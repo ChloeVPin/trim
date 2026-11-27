@@ -1,0 +1,26 @@
+24 trims to generate for arm 'oneline' (oneline)
+[1/24] cursorrules-nextjs haiku-high oneline#3: 578->442 words (-24%) $0.005 23s
+[2/24] cursorrules-nextjs haiku-high oneline#2: 578->398 words (-31%) $0.005 27s
+[3/24] cursorrules-nextjs haiku-high oneline#1: 578->393 words (-32%) $0.005 27s
+[4/24] cursorrules-nextjs opus-medium oneline#1: 578->347 words (-40%) $0.099 29s
+[5/24] daveshap-default-ci haiku-high oneline#2: 242->139 words (-43%) $0.002 16s
+[6/24] cursorrules-nextjs opus-medium oneline#2: 578->337 words (-42%) $0.080 25s
+[7/24] daveshap-default-ci haiku-high oneline#1: 242->135 words (-44%) $0.003 23s
+[8/24] cursorrules-nextjs opus-medium oneline#3: 578->340 words (-41%) $0.101 29s
+[9/24] daveshap-default-ci haiku-high oneline#3: 242->188 words (-22%) $0.002 16s
+[10/24] daveshap-default-ci opus-medium oneline#1: 242->131 words (-46%) $0.049 17s
+[11/24] daveshap-default-ci opus-medium oneline#2: 242->109 words (-55%) $0.050 16s
+[12/24] daveshap-default-ci opus-medium oneline#3: 242->98 words (-60%) $0.053 20s
+[13/24] superclaude-rules haiku-high oneline#1: 2127->517 words (-76%) $0.006 27s
+[14/24] superclaude-rules haiku-high oneline#2: 2127->597 words (-72%) $0.007 34s
+[15/24] superclaude-rules opus-medium oneline#1: 2127->355 words (-83%) $0.126 25s
+[16/24] superclaude-rules haiku-high oneline#3: 2127->522 words (-75%) $0.008 40s
+[17/24] superclaude-rules opus-medium oneline#2: 2127->516 words (-76%) $0.147 35s
+[18/24] superclaude-rules opus-medium oneline#3: 2127->461 words (-78%) $0.144 32s
+[19/24] taubench-airline haiku-high oneline#1: 1051->681 words (-35%) $0.007 37s
+[20/24] taubench-airline haiku-high oneline#2: 1051->691 words (-34%) $0.007 41s
+[21/24] taubench-airline opus-medium oneline#1: 1051->683 words (-35%) $0.090 23s
+[22/24] taubench-airline haiku-high oneline#3: 1051->659 words (-37%) $0.006 33s
+[23/24] taubench-airline opus-medium oneline#2: 1051->728 words (-31%) $0.091 23s
+[24/24] taubench-airline opus-medium oneline#3: 1051->641 words (-39%) $0.091 25s
+done: $1.18, 2.9 min

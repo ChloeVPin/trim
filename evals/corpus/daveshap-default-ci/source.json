@@ -1,0 +1,14 @@
+{
+  "id": "daveshap-default-ci",
+  "split": "dev",
+  "mode": "chat",
+  "repo": "https://github.com/daveshap/ChatGPT_Custom_Instructions",
+  "path": "default_instructions.md",
+  "commit": "9ed79d25004a082e9ed6ffd1a3f6c014301aea37",
+  "license": "MIT",
+  "fetched": "2026-11-27",
+  "extraction": "first fenced code block (the instructions themselves, without the README wrapper)",
+  "words": 242,
+  "chars": 1382,
+  "sha256": "e6ccc3f000ab186f7d10bb613789d1d1e25c7814df479b387be18e4bbf2891d0"
+}

@@ -1,0 +1,165 @@
+{
+  "id": "karpathy-claude-md",
+  "mode": "agent",
+  "scaffold": "js-shop",
+  "allowed_bash": [
+    "git *"
+  ],
+  "notes": "Short card of four generic coding principles (ask first, simplicity, surgical changes, verifiable goals); no project facts. On haiku-high every surviving check is default behaviour; ask-when-ambiguous, bug-test-first and plan-with-verify were not produced reliably by the original and were dropped.",
+  "protected": [
+    {
+      "id": "surgical-dont-delete-dead-code",
+      "why": "deleting pre-existing code the user did not ask about is hard to notice in review",
+      "patterns": [
+        "(?i)dead code",
+        "(?i)(mention|don't delete|unless asked)"
+      ]
+    },
+    {
+      "id": "touch-only-what-you-must",
+      "why": "keeps diffs reviewable",
+      "patterns": [
+        "(?i)(touch only|surgical|every changed line|adjacent code)"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "ask-when-ambiguous",
+      "patterns": [
+        "(?i)(interpretation|ask)"
+      ]
+    },
+    {
+      "id": "plan-with-verify-steps",
+      "patterns": [
+        "(?i)verify"
+      ]
+    },
+    {
+      "id": "bug-test-first",
+      "patterns": [
+        "(?i)test that reproduces|reproduc"
+      ]
+    },
+    {
+      "id": "match-existing-style",
+      "patterns": [
+        "(?i)existing style"
+      ]
+    },
+    {
+      "id": "no-impossible-error-handling",
+      "patterns": [
+        "(?i)error handling"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "fix-discount",
+      "prompt": "applyDiscount in src/cart.js gives wrong results. Fix it.",
+      "checks": [
+        {
+          "id": "surgical-leaves-removeItem",
+          "kind": "convention",
+          "rule": "Don't \"improve\" adjacent code, comments, or formatting. Don't refactor things that aren't broken.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/cart.js",
+              "pattern": "const index = items\\.findIndex\\(\\(item\\) => item\\.id == id\\)\\n  items\\.splice\\(index, 1\\)",
+              "expect": true
+            },
+            {
+              "type": "file_regex",
+              "glob": "src/cart.js",
+              "pattern": "return currency \\+ total\\(items\\)\\.toFixed\\(2\\)",
+              "expect": true
+            }
+          ]
+        },
+        {
+          "id": "match-no-semicolons",
+          "kind": "convention",
+          "rule": "Match existing style, even if you'd do it differently.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/cart.js",
+              "pattern": ";[ \\t]*$",
+              "expect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restock",
+      "prompt": "Add an exported `restock(items, sku, amount)` to src/inventory.js that returns the items with `amount` added to the qty of the item with that sku.",
+      "checks": [
+        {
+          "id": "keeps-and-mentions-legacy",
+          "kind": "guard",
+          "rule": "If you notice unrelated dead code, mention it - don't delete it.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/inventory.js",
+              "pattern": "function legacyRestock\\b",
+              "expect": true
+            },
+            {
+              "type": "text_regex",
+              "pattern": "legacyRestock"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "low-stock",
+      "prompt": "Add a `lowStock(items, threshold)` function to src/inventory.js that returns the items whose qty is below the threshold.",
+      "checks": [
+        {
+          "id": "keeps-dead-code",
+          "kind": "guard",
+          "rule": "If you notice unrelated dead code, mention it - don't delete it. Don't remove pre-existing dead code unless asked.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/inventory.js",
+              "pattern": "function legacyRestock\\b",
+              "expect": true
+            },
+            {
+              "type": "file_regex",
+              "glob": "src/inventory.js",
+              "pattern": "import \\{ readFileSync \\} from 'node:fs'",
+              "expect": true
+            }
+          ]
+        },
+        {
+          "id": "no-speculative-validation",
+          "kind": "convention",
+          "rule": "No error handling for impossible scenarios. No features beyond what was asked.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/inventory.js",
+              "pattern": "function lowStock",
+              "expect": true
+            },
+            {
+              "type": "file_regex",
+              "glob": "src/inventory.js",
+              "pattern": "throw|Array\\.isArray|typeof|Number\\.is|isNaN|console\\.",
+              "expect": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

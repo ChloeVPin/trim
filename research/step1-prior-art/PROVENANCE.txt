@@ -1,0 +1,20 @@
+Step 1 evidence, collected 2026-11-26/27 (UTC). Raw outputs only; nothing here is simulated.
+
+Input file
+  input_citypaul-dotfiles_CLAUDE.md
+  source:  https://github.com/citypaul/.dotfiles  path claude/.claude/CLAUDE.md  commit 67d1b74409 (HEAD on fetch)
+  license: MIT (repository LICENSE; (c) 2024 Paul Hammond)
+  size:    2,904 words / 208 lines
+
+Runs (Claude Code 2.1.332, headless, model claude-sonnet-5-5, edit tools disabled, one run each)
+  A  prompt: /doctor prompt-audit CLAUDE.md
+     -> builtin-audit_claude-target_sonnet-5-5.md (+ .meta.json: turns, duration, cost, tokens)
+  B  same file saved as AGENTS.md; prompt:
+     /claude-api prompt-audit AGENTS.md -- this file is read by Codex CLI running GPT-6 Astra (OpenAI),
+     not by a Claude model. Audit it for that target model.
+     -> builtin-audit_gpt-target_sonnet-5-5.md (+ .meta.json)
+     note: web search needed a permission prompt and was auto-denied in headless mode.
+
+Incumbent source read (not copied here)
+  https://github.com/anthropics/skills  skills/claude-api/shared/prompt-audit.md
+  commit e4bb5d960d87126ff3b3a8af1a104b7db67560ba (2026-11-16), Apache-2.0, 7,735 words

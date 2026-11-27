@@ -1,0 +1,33 @@
+{
+  "file": "daveshap-default-ci",
+  "config": "opus-medium",
+  "arm": "skill-v2",
+  "k": 1,
+  "ts": "2026-11-27T01:08:38Z",
+  "skill_sha": "d94678c88f64e77ff69d0b01316d91d2ef4bbb70b21ce96556b1ae05c23782a9",
+  "prompt": "/trim instructions.md for claude-opus-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 242,
+  "original_chars": 1382,
+  "trimmed_words": 196,
+  "trimmed_chars": 1131,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.19741899999999996,
+  "usage": {
+    "input_tokens": 6,
+    "output_tokens": 4991,
+    "cache_read_input_tokens": 24435,
+    "cache_creation_input_tokens": 11586
+  },
+  "num_turns": 4,
+  "duration_ms": 46595,
+  "skill_invoked": false,
+  "read_profiles": true,
+  "tools": [
+    "Read",
+    "Read",
+    "Write"
+  ]
+}

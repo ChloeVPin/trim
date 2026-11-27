@@ -1,0 +1,26 @@
+24 trims to generate for arm 'skill-v1' (skill)
+[1/24] cursorrules-nextjs opus-medium skill-v1#1: 578->452 words (-22%) $0.188 41s
+[2/24] cursorrules-nextjs haiku-high skill-v1#3: 578->486 words (-16%) $0.010 50s
+[3/24] cursorrules-nextjs haiku-high skill-v1#2: 578->525 words (-9%) $0.011 54s
+[4/24] cursorrules-nextjs haiku-high skill-v1#1: 578->511 words (-12%) $0.012 60s
+[5/24] cursorrules-nextjs opus-medium skill-v1#3: 578->438 words (-24%) $0.158 31s
+[6/24] cursorrules-nextjs opus-medium skill-v1#2: 578->436 words (-25%) $0.184 41s
+[7/24] daveshap-default-ci haiku-high skill-v1#1: 242->235 words (-3%) $0.009 47s
+[8/24] daveshap-default-ci haiku-high skill-v1#2: 242->234 words (-3%) $0.011 52s
+[9/24] daveshap-default-ci haiku-high skill-v1#3: 242->227 words (-6%) $0.010 53s
+[10/24] daveshap-default-ci opus-medium skill-v1#1: 242->195 words (-19%) $0.239 56s
+[11/24] daveshap-default-ci opus-medium skill-v1#2: 242->143 words (-41%) $0.196 51s
+[12/24] daveshap-default-ci opus-medium skill-v1#3: 242->189 words (-22%) $0.184 45s
+[13/24] superclaude-rules opus-medium skill-v1#1: 2127->888 words (-58%) $0.354 76s
+[14/24] superclaude-rules haiku-high skill-v1#2: 2127->1943 words (-9%) $0.021 99s
+[15/24] superclaude-rules haiku-high skill-v1#3: 2127->1921 words (-10%) $0.022 106s
+[16/24] superclaude-rules haiku-high skill-v1#1: 2127->1411 words (-34%) $0.027 144s
+[17/24] superclaude-rules opus-medium skill-v1#2: 2127->1178 words (-45%) $0.328 72s
+[18/24] taubench-airline haiku-high skill-v1#2: 1051->1033 words (-2%) $0.008 34s
+[19/24] taubench-airline haiku-high skill-v1#1: 1051->866 words (-18%) $0.011 55s
+[20/24] superclaude-rules opus-medium skill-v1#3: 2127->1033 words (-51%) $0.367 85s
+[21/24] taubench-airline opus-medium skill-v1#1: 1051->1031 words (-2%) $0.184 35s
+[22/24] taubench-airline opus-medium skill-v1#2: 1051->986 words (-6%) $0.195 41s
+[23/24] taubench-airline opus-medium skill-v1#3: 1051->1034 words (-2%) $0.200 40s
+[24/24] taubench-airline haiku-high skill-v1#3: 1051->903 words (-14%) $0.012 59s
+done: $2.94, 6.1 min

@@ -1,0 +1,23 @@
+206 runs to do (814 already recorded)
+[10/206] spent=$0.43 errors=0 eta=8.5min
+[20/206] spent=$1.36 errors=0 eta=8.9min
+[30/206] spent=$2.32 errors=0 eta=9.1min
+[40/206] spent=$3.09 errors=0 eta=9.3min
+[50/206] spent=$4.32 errors=0 eta=9.1min
+[60/206] spent=$5.73 errors=0 eta=9.1min
+[70/206] spent=$7.03 errors=0 eta=8.4min
+[80/206] spent=$7.44 errors=0 eta=7.5min
+[90/206] spent=$7.73 errors=0 eta=6.5min
+[100/206] spent=$8.06 errors=0 eta=5.8min
+[110/206] spent=$9.18 errors=0 eta=7.6min
+[120/206] spent=$11.36 errors=0 eta=6.5min
+[130/206] spent=$11.79 errors=0 eta=5.5min
+[140/206] spent=$12.38 errors=0 eta=4.8min
+[150/206] spent=$13.04 errors=0 eta=4.0min
+[160/206] spent=$14.29 errors=0 eta=3.3min
+[170/206] spent=$15.95 errors=0 eta=2.6min
+[180/206] spent=$17.15 errors=0 eta=1.8min
+[190/206] spent=$17.48 errors=0 eta=1.1min
+[200/206] spent=$18.45 errors=0 eta=0.4min
+[206/206] spent=$19.06 errors=0 eta=0.0min
+done: 206 runs, $19.06, 0 errors, 13.6 min

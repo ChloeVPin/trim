@@ -1,0 +1,33 @@
+{
+  "file": "beast-mode",
+  "config": "haiku-high",
+  "arm": "builtin",
+  "k": 1,
+  "ts": "2026-11-27T04:13:42Z",
+  "prompt": "/claude-api prompt-audit instructions.md -- the target model is claude-haiku-5-5. Apply your proposed edits to a copy saved as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 2657,
+  "original_chars": 17798,
+  "trimmed_words": 480,
+  "trimmed_chars": 2808,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.06879072,
+  "usage": {
+    "input_tokens": 8,
+    "output_tokens": 31183,
+    "cache_read_input_tokens": 204458,
+    "cache_creation_input_tokens": 100411
+  },
+  "num_turns": 5,
+  "duration_ms": 138524,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Glob",
+    "Read",
+    "Write"
+  ]
+}

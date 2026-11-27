@@ -1,0 +1,12 @@
+{
+  "name": "trim",
+  "description": "One skill: trim, which proposes a shorter version of instructions fitted to one model.",
+  "owner": { "name": "chloevpin" },
+  "plugins": [
+    {
+      "name": "trim",
+      "source": "./",
+      "description": "Proposes a shorter version of instructions you have given an AI, fitted to one named model."
+    }
+  ]
+}

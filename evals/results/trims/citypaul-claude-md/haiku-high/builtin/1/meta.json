@@ -1,0 +1,40 @@
+{
+  "file": "citypaul-claude-md",
+  "config": "haiku-high",
+  "arm": "builtin",
+  "k": 1,
+  "ts": "2026-11-27T04:13:42Z",
+  "prompt": "/claude-api prompt-audit instructions.md -- the target model is claude-haiku-5-5. Apply your proposed edits to a copy saved as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 2933,
+  "original_chars": 22067,
+  "trimmed_words": 2870,
+  "trimmed_chars": 21165,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.1362513,
+  "usage": {
+    "input_tokens": 16,
+    "output_tokens": 36357,
+    "cache_read_input_tokens": 614508,
+    "cache_creation_input_tokens": 118295
+  },
+  "num_turns": 12,
+  "duration_ms": 140161,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Glob",
+    "Read",
+    "Glob",
+    "Grep",
+    "Read",
+    "Read",
+    "Read",
+    "Write",
+    "Grep",
+    "Grep"
+  ]
+}

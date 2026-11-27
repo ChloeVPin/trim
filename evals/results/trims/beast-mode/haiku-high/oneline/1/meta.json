@@ -1,0 +1,32 @@
+{
+  "file": "beast-mode",
+  "config": "haiku-high",
+  "arm": "oneline",
+  "k": 1,
+  "ts": "2026-11-27T01:20:20Z",
+  "prompt": "Audit instructions.md and propose a shorter version suited to claude-haiku-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 2657,
+  "original_chars": 17798,
+  "trimmed_words": 413,
+  "trimmed_chars": 2459,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.0050199,
+  "usage": {
+    "input_tokens": 8,
+    "output_tokens": 4553,
+    "cache_read_input_tokens": 34440,
+    "cache_creation_input_tokens": 11991
+  },
+  "num_turns": 4,
+  "duration_ms": 23159,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Glob",
+    "Read",
+    "Write"
+  ]
+}

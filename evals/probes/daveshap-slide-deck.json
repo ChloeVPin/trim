@@ -1,0 +1,257 @@
+{
+  "id": "daveshap-slide-deck",
+  "mode": "chat",
+  "notes": "A 2023 ChatGPT custom-instructions prompt that turns any topic into one slide: short title, 2-3 sentence description, five labeled bullets.",
+  "protected": [],
+  "facts": [
+    {
+      "id": "title-two-to-four-words",
+      "patterns": [
+        "(?i)title",
+        "(?i)(two|2) to (four|4)"
+      ]
+    },
+    {
+      "id": "description-two-or-three-sentences",
+      "patterns": [
+        "(?i)(2|two) or (3|three)[^\\n]*sentence"
+      ]
+    },
+    {
+      "id": "exactly-five-bullets",
+      "patterns": [
+        "(?i)(exactly )?(five|5)\\b"
+      ]
+    },
+    {
+      "id": "labeled-list",
+      "patterns": [
+        "(?i)label"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "printing-press",
+      "prompt": "Make me a slide deck on the history of the printing press.",
+      "checks": [
+        {
+          "id": "five-bullets-per-group",
+          "kind": "format",
+          "rule": "Exactly five points, characteristics, or details (per slide: every bullet group has five items)",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 5,
+              "pattern": "^[ \\t]*[-*•][ \\t]+"
+            },
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "eq": 0,
+              "pattern": "^(?:[ \\t]*[-*•][ \\t][^\\n]*\\n){6}"
+            },
+            {
+              "type": "regex_count",
+              "flags": "",
+              "eq": 0,
+              "pattern": "(?:\\A|\\n)(?![ \\t]*[-*•][ \\t][^\\n]*)[^\\n]*\\n(?:[ \\t]*[-*•][ \\t][^\\n]*\\n){0,3}[ \\t]*[-*•][ \\t](?:[^\\n]*\\n(?![ \\t]*[-*•][ \\t][^\\n]*)|[^\\n]*[.!?)\\\"”*][ \\t]*\\Z)"
+            }
+          ]
+        },
+        {
+          "id": "labeled-bullets",
+          "kind": "format",
+          "rule": "in \"labeled list\" bullet point format (every bullet is 'Label: detail')",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 5,
+              "pattern": "^[ \\t]*[-*•][ \\t]+(?:\\*\\*)?[^:\\n*]{2,50}(?::\\*\\*|\\*\\*:|:)[ \\t]+\\S"
+            },
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "eq": 0,
+              "pattern": "^[ \\t]*[-*•][ \\t]+(?!(?:\\*\\*)?[^:\\n*]{2,50}(?::\\*\\*|\\*\\*:|:)[ \\t]+\\S)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photosynthesis",
+      "prompt": "photosynthesis",
+      "checks": [
+        {
+          "id": "short-title-first",
+          "kind": "format",
+          "rule": "Slide Title (Two to Four Words Max) -- checked as a first line of at most four words",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "s",
+              "pattern": "\\A\\s*(?:#{1,3}[ \\t]+)?(?:\\*\\*)?[^\\s*#\\-][^\\s*]*(?:[ \\t]+[^\\s*]+){0,3}(?:\\*\\*)?[ \\t]*\\n"
+            }
+          ]
+        },
+        {
+          "id": "two-or-three-sentences",
+          "kind": "format",
+          "rule": "Concept Description of Definition (2 or 3 complete sentences with word economy)",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "s",
+              "pattern": "\\A\\s*[^\\n]+\\n(?:[ \\t]*\\n)+[ \\t]*(?:[^\\s\\-*•#][^\\n]*?[.!?][\\\"”)]?[ \\t]+){1,2}[^\\n]*?[.!?][\\\"”)]?[ \\t]*\\n(?:[ \\t]*\\n)*[ \\t]*[-*•]"
+            }
+          ]
+        },
+        {
+          "id": "labeled-bullets",
+          "kind": "format",
+          "rule": "in \"labeled list\" bullet point format (every bullet is 'Label: detail')",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 5,
+              "pattern": "^[ \\t]*[-*•][ \\t]+(?:\\*\\*)?[^:\\n*]{2,50}(?::\\*\\*|\\*\\*:|:)[ \\t]+\\S"
+            },
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "eq": 0,
+              "pattern": "^[ \\t]*[-*•][ \\t]+(?!(?:\\*\\*)?[^:\\n*]{2,50}(?::\\*\\*|\\*\\*:|:)[ \\t]+\\S)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "startups-fail",
+      "prompt": "Why do most startups fail? I need something for a talk to first-year business students.",
+      "checks": [
+        {
+          "id": "short-title-first",
+          "kind": "format",
+          "rule": "Slide Title (Two to Four Words Max) -- checked as a first line of at most four words",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "s",
+              "pattern": "\\A\\s*(?:#{1,3}[ \\t]+)?(?:\\*\\*)?[^\\s*#\\-][^\\s*]*(?:[ \\t]+[^\\s*]+){0,3}(?:\\*\\*)?[ \\t]*\\n"
+            }
+          ]
+        },
+        {
+          "id": "labeled-bullets",
+          "kind": "format",
+          "rule": "in \"labeled list\" bullet point format (every bullet is 'Label: detail')",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 5,
+              "pattern": "^[ \\t]*[-*•][ \\t]+(?:\\*\\*)?[^:\\n*]{2,50}(?::\\*\\*|\\*\\*:|:)[ \\t]+\\S"
+            },
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "eq": 0,
+              "pattern": "^[ \\t]*[-*•][ \\t]+(?!(?:\\*\\*)?[^:\\n*]{2,50}(?::\\*\\*|\\*\\*:|:)[ \\t]+\\S)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "remote-work",
+      "prompt": "Can you put together a presentation on remote work best practices for my team meeting on Monday?",
+      "checks": [
+        {
+          "id": "five-bullets-per-group",
+          "kind": "format",
+          "rule": "Exactly five points, characteristics, or details (per slide: every bullet group has five items)",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 5,
+              "pattern": "^[ \\t]*[-*•][ \\t]+"
+            },
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "eq": 0,
+              "pattern": "^(?:[ \\t]*[-*•][ \\t][^\\n]*\\n){6}"
+            },
+            {
+              "type": "regex_count",
+              "flags": "",
+              "eq": 0,
+              "pattern": "(?:\\A|\\n)(?![ \\t]*[-*•][ \\t][^\\n]*)[^\\n]*\\n(?:[ \\t]*[-*•][ \\t][^\\n]*\\n){0,3}[ \\t]*[-*•][ \\t](?:[^\\n]*\\n(?![ \\t]*[-*•][ \\t][^\\n]*)|[^\\n]*[.!?)\\\"”*][ \\t]*\\Z)"
+            }
+          ]
+        },
+        {
+          "id": "two-or-three-sentences",
+          "kind": "format",
+          "rule": "Concept Description of Definition (2 or 3 complete sentences with word economy)",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "s",
+              "pattern": "\\A\\s*[^\\n]+\\n(?:[ \\t]*\\n)+[ \\t]*(?:[^\\s\\-*•#][^\\n]*?[.!?][\\\"”)]?[ \\t]+){1,2}[^\\n]*?[.!?][\\\"”)]?[ \\t]*\\n(?:[ \\t]*\\n)*[ \\t]*[-*•]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compound-interest",
+      "prompt": "Explain compound interest",
+      "checks": [
+        {
+          "id": "short-title-first",
+          "kind": "format",
+          "rule": "Slide Title (Two to Four Words Max) -- checked as a first line of at most four words",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "s",
+              "pattern": "\\A\\s*(?:#{1,3}[ \\t]+)?(?:\\*\\*)?[^\\s*#\\-][^\\s*]*(?:[ \\t]+[^\\s*]+){0,3}(?:\\*\\*)?[ \\t]*\\n"
+            }
+          ]
+        },
+        {
+          "id": "five-bullets-per-group",
+          "kind": "format",
+          "rule": "Exactly five points, characteristics, or details (per slide: every bullet group has five items)",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 5,
+              "pattern": "^[ \\t]*[-*•][ \\t]+"
+            },
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "eq": 0,
+              "pattern": "^(?:[ \\t]*[-*•][ \\t][^\\n]*\\n){6}"
+            },
+            {
+              "type": "regex_count",
+              "flags": "",
+              "eq": 0,
+              "pattern": "(?:\\A|\\n)(?![ \\t]*[-*•][ \\t][^\\n]*)[^\\n]*\\n(?:[ \\t]*[-*•][ \\t][^\\n]*\\n){0,3}[ \\t]*[-*•][ \\t](?:[^\\n]*\\n(?![ \\t]*[-*•][ \\t][^\\n]*)|[^\\n]*[.!?)\\\"”*][ \\t]*\\Z)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

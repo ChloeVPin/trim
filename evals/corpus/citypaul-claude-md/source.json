@@ -1,0 +1,14 @@
+{
+  "id": "citypaul-claude-md",
+  "split": "heldout",
+  "mode": "agent",
+  "repo": "https://github.com/citypaul/.dotfiles",
+  "path": "claude/.claude/CLAUDE.md",
+  "commit": "67d1b74409be1023016e2e6bc8731a33ce0ed4a9",
+  "license": "MIT",
+  "fetched": "2026-11-27",
+  "extraction": "whole file, unmodified",
+  "words": 2933,
+  "chars": 22067,
+  "sha256": "188518ff2481a50d3e88c92dcc1884be8aa6893666e3f89a814599b2086b5ebc"
+}

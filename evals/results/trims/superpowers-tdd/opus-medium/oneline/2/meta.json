@@ -1,0 +1,31 @@
+{
+  "file": "superpowers-tdd",
+  "config": "opus-medium",
+  "arm": "oneline",
+  "k": 2,
+  "ts": "2026-11-27T01:26:35Z",
+  "prompt": "Audit instructions.md and propose a shorter version suited to claude-opus-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 1475,
+  "original_chars": 9556,
+  "trimmed_words": 595,
+  "trimmed_chars": 3574,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.1059078,
+  "usage": {
+    "input_tokens": 6,
+    "output_tokens": 2273,
+    "cache_read_input_tokens": 22359,
+    "cache_creation_input_tokens": 6994
+  },
+  "num_turns": 3,
+  "duration_ms": 24453,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Write"
+  ]
+}

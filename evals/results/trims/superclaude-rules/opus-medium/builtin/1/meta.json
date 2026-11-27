@@ -1,0 +1,35 @@
+{
+  "file": "superclaude-rules",
+  "config": "opus-medium",
+  "arm": "builtin",
+  "k": 1,
+  "ts": "2026-11-27T00:40:19Z",
+  "prompt": "/claude-api prompt-audit instructions.md -- the target model is claude-opus-5-5. Apply your proposed edits to a copy saved as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 2127,
+  "original_chars": 15801,
+  "trimmed_words": 1522,
+  "trimmed_chars": 11142,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.9886838,
+  "usage": {
+    "input_tokens": 12,
+    "output_tokens": 12676,
+    "cache_read_input_tokens": 371779,
+    "cache_creation_input_tokens": 82595
+  },
+  "num_turns": 7,
+  "duration_ms": 112434,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Read",
+    "Glob",
+    "Grep",
+    "Read",
+    "Write"
+  ]
+}

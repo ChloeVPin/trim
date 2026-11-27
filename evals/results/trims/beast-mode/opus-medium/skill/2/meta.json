@@ -1,0 +1,33 @@
+{
+  "file": "beast-mode",
+  "config": "opus-medium",
+  "arm": "skill",
+  "k": 2,
+  "ts": "2026-11-27T05:25:38Z",
+  "skill_sha": "783175f02f069d9630a5296cf5f2222f1ca63be4d5ff8323b0e8bfa7d7e7218a",
+  "prompt": "/trim instructions.md for claude-opus-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 2657,
+  "original_chars": 17798,
+  "trimmed_words": 783,
+  "trimmed_chars": 4704,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.2763464,
+  "usage": {
+    "input_tokens": 6,
+    "output_tokens": 6073,
+    "cache_read_input_tokens": 30352,
+    "cache_creation_input_tokens": 18599
+  },
+  "num_turns": 4,
+  "duration_ms": 58962,
+  "skill_invoked": false,
+  "read_profiles": true,
+  "tools": [
+    "Read",
+    "Read",
+    "Write"
+  ]
+}

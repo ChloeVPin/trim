@@ -1,0 +1,35 @@
+33 trims to generate for arm 'skill' (skill)
+[1/33] beast-mode haiku-high skill#2: 2657->452 words (-83%) $0.010 48s
+[2/33] beast-mode haiku-high skill#3: 2657->555 words (-79%) $0.011 51s
+[3/33] beast-mode haiku-high skill#1: 2657->438 words (-84%) $0.012 63s
+[4/33] citypaul-claude-md haiku-high skill#1: 2933->1895 words (-35%) $0.017 78s
+[5/33] cursorrules-nextjs haiku-high skill#1: 578->425 words (-26%) $0.014 69s
+[6/33] cursorrules-nextjs haiku-high skill#2: 578->451 words (-22%) $0.014 67s
+[7/33] citypaul-claude-md haiku-high skill#3: 2933->2151 words (-27%) $0.021 94s
+[8/33] citypaul-claude-md haiku-high skill#2: 2933->2367 words (-19%) $0.026 127s
+[9/33] daveshap-default-ci haiku-high skill#2: 242->210 words (-13%) $0.010 46s
+[10/33] cursorrules-nextjs haiku-high skill#3: 578->452 words (-22%) $0.013 65s
+[11/33] daveshap-default-ci haiku-high skill#1: 242->221 words (-9%) $0.011 54s
+[12/33] daveshap-slide-deck haiku-high skill#1: 200->175 words (-12%) $0.007 31s
+[13/33] daveshap-slide-deck haiku-high skill#2: 200->156 words (-22%) $0.006 26s
+[14/33] daveshap-default-ci haiku-high skill#3: 242->214 words (-12%) $0.011 59s
+[15/33] daveshap-slide-deck haiku-high skill#3: 200->180 words (-10%) $0.008 37s
+[16/33] karpathy-claude-md haiku-high skill#1: 358->326 words (-9%) $0.008 37s
+[17/33] fabric-extract-wisdom haiku-high skill#1: 539->445 words (-17%) $0.011 53s
+[18/33] fabric-extract-wisdom haiku-high skill#2: 539->350 words (-35%) $0.011 53s
+[19/33] fabric-extract-wisdom haiku-high skill#3: 539->462 words (-14%) $0.011 54s
+[20/33] karpathy-claude-md haiku-high skill#3: 358->299 words (-16%) $0.009 42s
+[21/33] karpathy-claude-md haiku-high skill#2: 358->314 words (-12%) $0.010 48s
+[22/33] openai-agents-agents-md haiku-high skill#2: 2103->2091 words (-1%) $0.013 55s
+[23/33] openai-agents-agents-md haiku-high skill#1: 2103->2091 words (-1%) $0.015 64s
+[24/33] openai-agents-agents-md haiku-high skill#3: 2103->2091 words (-1%) $0.015 69s
+[25/33] superpowers-tdd haiku-high skill#1: 1475->1320 words (-11%) $0.013 61s
+[26/33] superclaude-rules haiku-high skill#1: 2127->1209 words (-43%) $0.027 139s
+[27/33] superclaude-rules haiku-high skill#2: 2127->1112 words (-48%) $0.026 135s
+[28/33] superclaude-rules haiku-high skill#3: 2127->1338 words (-37%) $0.028 146s
+[29/33] taubench-airline haiku-high skill#1: 1051->1034 words (-2%) $0.007 33s
+[30/33] superpowers-tdd haiku-high skill#2: 1475->1284 words (-13%) $0.015 74s
+[31/33] taubench-airline haiku-high skill#2: 1051->1034 words (-2%) $0.009 42s
+[32/33] superpowers-tdd haiku-high skill#3: 1475->773 words (-48%) $0.015 77s
+[33/33] taubench-airline haiku-high skill#3: 1051->1037 words (-1%) $0.011 54s
+done: $0.45, 9.5 min

@@ -1,0 +1,19 @@
+162 runs to do (0 already recorded)
+[10/162] spent=$0.16 errors=0 eta=4.4min
+[20/162] spent=$0.42 errors=0 eta=3.6min
+[30/162] spent=$0.61 errors=0 eta=2.8min
+[40/162] spent=$0.79 errors=0 eta=2.6min
+[50/162] spent=$1.01 errors=0 eta=2.4min
+[60/162] spent=$1.12 errors=0 eta=2.0min
+[70/162] spent=$1.34 errors=0 eta=2.0min
+[80/162] spent=$1.51 errors=0 eta=1.7min
+[90/162] spent=$1.54 errors=0 eta=1.4min
+[100/162] spent=$1.55 errors=0 eta=1.2min
+[110/162] spent=$1.55 errors=0 eta=1.0min
+[120/162] spent=$1.55 errors=0 eta=0.8min
+[130/162] spent=$1.56 errors=0 eta=0.6min
+[140/162] spent=$1.56 errors=0 eta=0.4min
+[150/162] spent=$1.57 errors=0 eta=0.2min
+[160/162] spent=$1.57 errors=0 eta=0.0min
+[162/162] spent=$1.57 errors=0 eta=0.0min
+done: 162 runs, $1.57, 0 errors, 2.7 min

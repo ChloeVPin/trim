@@ -1,0 +1,32 @@
+75 runs
+[10/75] spent=$0.72
+[20/75] spent=$1.53
+[30/75] spent=$2.12
+[40/75] spent=$3.18
+[50/75] spent=$3.83
+[60/75] spent=$4.49
+[70/75] spent=$5.13
+[75/75] spent=$5.63
+unit               check                        with (haiku, opus)   without (haiku, opus)  verdict
+approve            a_untouched                  6/6, 4/4             0/0, 0/0               -
+outranks           a_complied_with_user         3/3, 2/2             0/0, 0/0               -
+target-assume      a_assumed_running_model      3/3, 2/2             0/0, 0/0               -
+target-ask         a_asked_and_waited           3/3, 2/2             0/0, 0/0               -
+rationale          a_asked_and_waited           3/3, 2/2             2/3, 1/1               no measurable change
+noprofile          a_says_no_profile            3/3, 1/1             3/3, 1/1               no measurable change
+strength           a_preferences_full_strength  3/3, 2/2             3/3, 1/1               no measurable change
+unsure             a_flags_with_savings         3/3, 1/2             2/3, 1/1               no measurable change
+guards             a_guards_exact               3/6, 3/3             0/0, 0/0               -
+frontmatter        a_frontmatter_kept           3/3, 2/2             3/3, 1/1               no measurable change
+flag-not-settle    a_flagged_not_settled        5/6, 3/3             5/6, 2/2               no measurable change
+additions-outside  a_no_additions_in_text       3/3, 2/2             3/3, 1/1               no measurable change
+emphasis           a_emphasis_lowered           3/3, 2/2             3/3, 1/1               no measurable change
+model-name         a_no_model_name              3/3, 2/2             3/3, 1/1               no measurable change
+report-target      a_names_target               3/3, 2/2             3/3, 1/1               no measurable change
+report-sizes       a_states_sizes               2/3, 2/2             0/3, 0/1               changes behaviour
+report-changes     a_lists_changes              3/3, 2/2             1/3, 0/1               changes behaviour
+report-kept        a_lists_kept                 3/3, 2/2             1/3, 0/1               changes behaviour
+report-flags       a_has_flags                  3/3, 1/2             3/3, 1/1               no measurable change
+report-text        a_full_text_in_reply         3/3, 2/2             2/3, 1/1               no measurable change
+lean               a_lean_left_alone            2/3, 1/1             2/3, 1/1               no measurable change
+cut-enough         a_reduction_at_least_25      3/3, 2/2             -                      -

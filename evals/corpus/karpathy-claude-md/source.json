@@ -1,0 +1,14 @@
+{
+  "id": "karpathy-claude-md",
+  "split": "heldout",
+  "mode": "agent",
+  "repo": "https://github.com/forrestchang/andrej-karpathy-skills",
+  "path": "CLAUDE.md",
+  "commit": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+  "license": "MIT (stated in README; no LICENSE file)",
+  "fetched": "2026-11-27",
+  "extraction": "whole file, unmodified",
+  "words": 358,
+  "chars": 2345,
+  "sha256": "694a2d721e41c385f3db492838c23299826df5ba9809e3b0721aac70021e196a"
+}

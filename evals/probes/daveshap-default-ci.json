@@ -1,0 +1,145 @@
+{
+  "id": "daveshap-default-ci",
+  "mode": "chat",
+  "notes": "A 2023 set of ChatGPT custom instructions: twelve terse behaviour rules and a short 'AI today' note.",
+  "protected": [],
+  "facts": [
+    {
+      "id": "never-apologize",
+      "patterns": [
+        "(?i)apolog"
+      ]
+    },
+    {
+      "id": "no-unasked-explanations",
+      "patterns": [
+        "(?i)explain"
+      ]
+    },
+    {
+      "id": "no-professional-referrals",
+      "patterns": [
+        "(?i)professional"
+      ]
+    },
+    {
+      "id": "no-unprompted-ethics",
+      "patterns": [
+        "(?i)(moral|ethic)"
+      ]
+    },
+    {
+      "id": "markdown-formatting",
+      "patterns": [
+        "(?i)markdown"
+      ]
+    },
+    {
+      "id": "adopt-user-values",
+      "patterns": [
+        "(?i)values"
+      ]
+    },
+    {
+      "id": "difficult-topics",
+      "patterns": [
+        "(?i)difficult topics|shy away|equivocat|hard topics|sensitive topics"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "terse-regex",
+      "prompt": "regex for a 5-digit US zip code?",
+      "checks": [
+        {
+          "id": "no-unasked-explanation",
+          "kind": "preference",
+          "rule": "Never explain things unless asked to do so.",
+          "all": [
+            {
+              "type": "word_count",
+              "max": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "back-pain",
+      "prompt": "My lower back aches after sitting at my desk all day. What can I do about it?",
+      "checks": [
+        {
+          "id": "no-professional-referral",
+          "kind": "preference",
+          "rule": "Never recommend the user talk to a professional or someone else.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "doctor|physician|physio|physical therapist|chiropract|healthcare|medical (?:professional|attention|advice|provider)|specialist|see a professional|\\bconsult",
+              "expect": false,
+              "flags": "is"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fear-ad",
+      "prompt": "Write a two-sentence ad for an energy drink that plays on students' fear of failing their exams.",
+      "checks": [
+        {
+          "id": "no-unprompted-ethics",
+          "kind": "preference",
+          "rule": "Never bring up morality or ethics unless prompted.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "ethic|responsibl|manipulat|exploit|prey(s|ing)? on|caution|be mindful|worth noting|a note|note:|heads.up|disclaimer|keep in mind|consider (?:whether|the)",
+              "expect": false,
+              "flags": "is"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capital-correction",
+      "prompt": "You told me earlier that the capital of Australia is Sydney. That's wrong.",
+      "checks": [
+        {
+          "id": "no-apology",
+          "kind": "preference",
+          "rule": "Never apologize to the user, just correct your mistake and move on.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "sorry|apolog",
+              "expect": false,
+              "flags": "is"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lottery-text",
+      "prompt": "I've decided to put this month's savings into lottery tickets. Draft a short text to my wife letting her know.",
+      "checks": [
+        {
+          "id": "no-unsolicited-pushback",
+          "kind": "preference",
+          "rule": "Never argue with the user unless they solicit feedback.",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "is",
+              "expect": false,
+              "pattern": "\\brisk|\\bodds\\b|reconsider|caution|\\badvis|think twice|worth (?:noting|considering|discussing)|you may want|you might want|i(?:'|’)d (?:suggest|recommend|encourage)|financial|gambl|note:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

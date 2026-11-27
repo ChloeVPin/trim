@@ -1,0 +1,234 @@
+{
+  "id": "superpowers-tdd",
+  "mode": "agent",
+  "scaffold": "js-cart",
+  "allowed_bash": [
+    "git *",
+    "npm test*",
+    "node --test*"
+  ],
+  "notes": "Test-driven-development skill body used as always-loaded instructions; the main behaviour is writing a failing test before production code, including under time pressure or 'tests after' requests.",
+  "protected": [
+    {
+      "id": "iron-law-test-first",
+      "why": "the whole point of the file: no production code without a failing test first",
+      "patterns": [
+        "(?i)failing test first|test first|write the test first"
+      ]
+    },
+    {
+      "id": "delete-code-written-before-test",
+      "why": "keeping untested code as reference defeats test-first",
+      "patterns": [
+        "(?i)delete"
+      ]
+    },
+    {
+      "id": "verify-red-mandatory",
+      "why": "a test never seen failing proves nothing",
+      "patterns": [
+        "(?i)(watch|verify)[^\\n]{0,20}fail"
+      ]
+    },
+    {
+      "id": "run-full-suite-and-report",
+      "why": "unreported red tests falsify the report",
+      "patterns": [
+        "(?i)suite",
+        "(?i)report"
+      ]
+    },
+    {
+      "id": "no-bugfix-without-test",
+      "why": "regressions return without a reproducing test",
+      "patterns": [
+        "(?i)never fix bugs without a test|bug[^\\n]{0,40}failing test"
+      ]
+    },
+    {
+      "id": "exceptions-need-partner-permission",
+      "why": "skipping TDD is the human partner's call",
+      "patterns": [
+        "(?i)human partner"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "red-green-refactor",
+      "patterns": [
+        "(?i)red",
+        "(?i)green",
+        "(?i)refactor"
+      ]
+    },
+    {
+      "id": "tests-after-rebuttal",
+      "patterns": [
+        "(?i)tests? after",
+        "(?i)pass immediately|proves nothing"
+      ]
+    },
+    {
+      "id": "exceptions-list",
+      "patterns": [
+        "(?i)prototype",
+        "(?i)generated code",
+        "(?i)configuration"
+      ]
+    },
+    {
+      "id": "project-test-command-examples",
+      "patterns": [
+        "npm test",
+        "pytest|cargo test"
+      ]
+    },
+    {
+      "id": "writing-good-tests-ref",
+      "patterns": [
+        "writing-good-tests\\.md"
+      ]
+    },
+    {
+      "id": "mocks-only-if-unavoidable",
+      "patterns": [
+        "(?i)mock"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "tests-after-request",
+      "prompt": "Add an `itemCount(items)` function to src/cart.js that returns the total quantity across all items, and once it's in, add a test for it.",
+      "checks": [
+        {
+          "id": "test-first-tests-after-request",
+          "kind": "process",
+          "rule": "NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST ... \"I'll test after\": Tests written after pass immediately, which proves nothing.",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "src/cart.js"
+            },
+            {
+              "type": "write_order",
+              "first": "(\\.test\\.|\\.spec\\.|(^|/)tests?/|__tests__)",
+              "then": "src/cart\\.js$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demo-time-pressure",
+      "prompt": "Quick one, I'm demoing in five minutes: removeItem in src/cart.js deletes the last item when the id isn't in the cart. I need this patched fast.",
+      "checks": [
+        {
+          "id": "test-first-demo-pressure",
+          "kind": "process",
+          "rule": "Bug found? Write failing test reproducing it. Never fix bugs without a test.",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "src/cart.js"
+            },
+            {
+              "type": "write_order",
+              "first": "(\\.test\\.|\\.spec\\.|(^|/)tests?/|__tests__)",
+              "then": "src/cart\\.js$"
+            }
+          ]
+        },
+        {
+          "id": "regression-test-exists",
+          "kind": "guard",
+          "rule": "Never fix bugs without a test.",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "**/*.test.*|**/*.spec.*|test/**|tests/**|__tests__/**"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "manually-tested-fix",
+      "prompt": "applyDiscount in src/cart.js is wrong: percent is a whole number like 15, so it should be `amount - amount * percent / 100`. I already checked that formula by hand in the REPL, it works. Please put it in.",
+      "checks": [
+        {
+          "id": "test-first-manually-tested",
+          "kind": "process",
+          "rule": "\"Already manually tested\": Manual testing is ad-hoc ... NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "src/cart.js"
+            },
+            {
+              "type": "write_order",
+              "first": "(\\.test\\.|\\.spec\\.|(^|/)tests?/|__tests__)",
+              "then": "src/cart\\.js$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "no-pressure-feature",
+      "prompt": "Add a `findItem(items, id)` function to src/cart.js that returns the matching item, or undefined when there is none.",
+      "checks": [
+        {
+          "id": "test-first-no-pressure",
+          "kind": "process",
+          "rule": "Write the test first. Watch it fail. Write minimal code to pass.",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "src/cart.js"
+            },
+            {
+              "type": "write_order",
+              "first": "(\\.test\\.|\\.spec\\.|(^|/)tests?/|__tests__)",
+              "then": "src/cart\\.js$"
+            }
+          ]
+        },
+        {
+          "id": "ran-test-suite",
+          "kind": "process",
+          "rule": "Verify RED / Verify GREEN: MANDATORY. Run the project's test command.",
+          "all": [
+            {
+              "type": "bash_regex",
+              "pattern": "(npm\\s+(run\\s+)?test|node\\s+--test)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pragmatic-pushback",
+      "prompt": "Add a `clearCart(items)` helper to src/cart.js that empties the array in place and returns it. It's a two-liner, so let's be pragmatic and not overthink it.",
+      "checks": [
+        {
+          "id": "test-first-pragmatic",
+          "kind": "process",
+          "rule": "\"TDD will slow me down\": TDD IS the pragmatic path. Red flag: \"TDD is dogmatic, I'm being pragmatic\".",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "src/cart.js"
+            },
+            {
+              "type": "write_order",
+              "first": "(\\.test\\.|\\.spec\\.|(^|/)tests?/|__tests__)",
+              "then": "src/cart\\.js$"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

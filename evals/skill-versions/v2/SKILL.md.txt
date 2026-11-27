@@ -1,0 +1,40 @@
+---
+name: trim
+description: "Proposes a shorter version of instructions someone has given an AI (custom instructions, a project or system prompt, a rules file such as CLAUDE.md or AGENTS.md, an installed skill), fitted to one named model. Use when asked to trim, shorten or clean up such instructions, or to re-check them after changing models. Not for writing new instructions."
+license: MIT
+metadata:
+  version: "0.2.0"
+---
+
+# Trim
+
+Propose a shorter version of someone's instructions for one model. The author decides: change nothing until they approve, and what they ask for in the conversation outranks this skill.
+
+## 1. Fix the target model
+
+How much to cut depends on the model that will read the instructions, which may not be the model running this skill. Take the model the person names. If they name none and the instructions are for the assistant you are running in, take the model ID your system prompt states and say you assumed it. Otherwise ask which model and wait, because a guessed model makes every later call unreliable.
+
+Then read `references/profiles.md`. Model-specific reasons come from that file or from a maker's page you read in this conversation; your own memory of how models behave predates the current ones. A model with no profile gets the conservative treatment described there.
+
+## 2. Sort each instruction
+
+Ask of each line: would the target model act differently without it?
+
+- **No**: it repeats another line, states what the model does unprompted, or is something the profile says this model no longer needs. Cut it.
+- **Yes**: it carries a fact the model cannot know (a name, path, command, number, date, format) or a choice the author made. Keep it at full strength, including choices you would advise against. Turning "never explain" into "be concise" changes what was asked.
+- **Unsure**: keep it and flag it, with how much shorter the text gets if the author agrees to drop it.
+
+Two things stay exactly as written whatever the answer: rules guarding work that is fragile or cannot be undone (deleting, sending, paying, publishing, committing, production, approvals, policy or legal limits), with their conditions and exceptions, and anything a program reads, such as frontmatter. A wrong cut there costs far more than the words saved.
+
+Lines that look stale, risky or in conflict with each other get flagged, not settled; that is the author's call. So is anything new: list additions the profile recommends as suggestions outside the text. Wording can change (emphasis down to normal volume, a reason kept beside its rule), and the model's name stays out of the text, since the file may outlive the model.
+
+## 3. Report
+
+1. Target model, and whether it was named, assumed, or has no profile.
+2. Words before and after. Count with a tool if you have one; otherwise say the figures are estimates.
+3. Each change, with its reason.
+4. What you kept and why.
+5. Flags and suggestions for the author.
+6. The proposed text in full: in the file they asked for, otherwise in one code block ready to paste.
+
+A file that is already lean should come back nearly unchanged; say so rather than cutting to show effort.

@@ -1,0 +1,35 @@
+{
+  "file": "taubench-airline",
+  "config": "haiku-high",
+  "arm": "skill-v2",
+  "k": 3,
+  "ts": "2026-11-27T01:11:56Z",
+  "skill_sha": "d94678c88f64e77ff69d0b01316d91d2ef4bbb70b21ce96556b1ae05c23782a9",
+  "prompt": "/trim instructions.md for claude-haiku-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 1051,
+  "original_chars": 6155,
+  "trimmed_words": 958,
+  "trimmed_chars": 5567,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.012221800000000001,
+  "usage": {
+    "input_tokens": 10,
+    "output_tokens": 14204,
+    "cache_read_input_tokens": 66920,
+    "cache_creation_input_tokens": 22248
+  },
+  "num_turns": 6,
+  "duration_ms": 59578,
+  "skill_invoked": false,
+  "read_profiles": true,
+  "tools": [
+    "Glob",
+    "Read",
+    "Read",
+    "Glob",
+    "Write"
+  ]
+}

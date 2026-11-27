@@ -1,0 +1,189 @@
+{
+  "id": "beast-mode",
+  "mode": "agent",
+  "scaffold": "js-cart",
+  "allowed_bash": [
+    "git *",
+    "npm test*",
+    "node *"
+  ],
+  "notes": "Hyperbolic autonomous-agent prompt for GPT-4.1 in VS Code Copilot (web research, sequential thinking, emoji todo lists). Most tools it names do not exist here; probes target its todo-list format, autonomy, testing and communication rules.",
+  "protected": [
+    {
+      "id": "keep-going-until-solved",
+      "why": "the file's main contract: do not hand control back with work unfinished",
+      "patterns": [
+        "(?i)keep going",
+        "(?i)(completely|fully) (resolved|solved)"
+      ]
+    },
+    {
+      "id": "test-rigorously",
+      "why": "untested changes are called the number one failure mode",
+      "patterns": [
+        "(?i)test[^\\n]{0,40}rigorously",
+        "(?i)edge case"
+      ]
+    },
+    {
+      "id": "read-before-edit",
+      "why": "editing without context corrupts files",
+      "patterns": [
+        "(?i)before editing[^\\n]{0,40}read"
+      ]
+    },
+    {
+      "id": "no-html-in-todo",
+      "why": "HTML todo lists do not render",
+      "patterns": [
+        "(?i)HTML"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "todo-markdown-checkboxes",
+      "patterns": [
+        "- \\[ \\]",
+        "\\[x\\]"
+      ]
+    },
+    {
+      "id": "todo-template-emoji",
+      "patterns": [
+        "⚖️|🧠|🎯|🧪"
+      ]
+    },
+    {
+      "id": "display-updated-todo",
+      "patterns": [
+        "(?i)display the updated todo"
+      ]
+    },
+    {
+      "id": "resume-continue-behaviour",
+      "patterns": [
+        "(?i)resume",
+        "(?i)continue"
+      ]
+    },
+    {
+      "id": "announce-before-tool-call",
+      "patterns": [
+        "(?i)single concise sentence"
+      ]
+    },
+    {
+      "id": "read-2000-lines",
+      "patterns": [
+        "2000"
+      ]
+    },
+    {
+      "id": "fetch-webpage-tool",
+      "patterns": [
+        "fetch_webpage"
+      ]
+    },
+    {
+      "id": "google-bing-search-urls",
+      "patterns": [
+        "google\\.com/search",
+        "bing\\.com/search"
+      ]
+    },
+    {
+      "id": "sequential-thinking-tool",
+      "patterns": [
+        "sequential_?thinking"
+      ]
+    },
+    {
+      "id": "get-errors-tool",
+      "patterns": [
+        "get_errors"
+      ]
+    },
+    {
+      "id": "constitutional-vocabulary",
+      "patterns": [
+        "(?i)constitutional",
+        "(?i)adversarial|red[- ]team"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "fix-discount",
+      "prompt": "applyDiscount in src/cart.js gives a negative number for a 15% discount. Fix it.",
+      "checks": [
+        {
+          "id": "ran-tests-fix-discount",
+          "kind": "process",
+          "rule": "At the end, you must test your code rigorously using the tools provided, and do it many times ... run existing tests if they are provided.",
+          "all": [
+            {
+              "type": "bash_regex",
+              "pattern": "(npm\\s+(run\\s+)?test|node\\s)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fix-remove-item",
+      "prompt": "removeItem in src/cart.js deletes the wrong item when the id isn't in the cart. Fix it.",
+      "checks": [
+        {
+          "id": "ran-tests-fix-remove-item",
+          "kind": "process",
+          "rule": "At the end, you must test your code rigorously using the tools provided, and do it many times ... run existing tests if they are provided.",
+          "all": [
+            {
+              "type": "bash_regex",
+              "pattern": "(npm\\s+(run\\s+)?test|node\\s)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plan-coupons",
+      "prompt": "Before touching any code, lay out how you would add coupon codes (percentage and fixed-amount) to the cart helpers in src/cart.js. Just the plan for now.",
+      "checks": [
+        {
+          "id": "markdown-todo-list",
+          "kind": "format",
+          "rule": "Todo List: Create a markdown todo list of the tasks you need to complete. Do not ever use HTML tags or any other formatting for the todo list.",
+          "all": [
+            {
+              "type": "regex_count",
+              "pattern": "^\\s*[-*]\\s+\\[ \\]",
+              "min": 3,
+              "flags": "m"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resume-todo",
+      "prompt": "Here's where we left off on the cart cleanup:\n\n- [x] Fix applyDiscount so percent is treated as a whole number\n- [ ] Make removeItem leave the cart alone when the id isn't found\n- [ ] Add node:test tests for applyDiscount and removeItem\n\ncontinue",
+      "checks": [
+        {
+          "id": "updated-todo-shown",
+          "kind": "format",
+          "rule": "Each time you check off a step, display the updated todo list to the user.",
+          "all": [
+            {
+              "type": "regex_count",
+              "pattern": "^\\s*[-*]\\s+\\[[xX]\\]",
+              "min": 3,
+              "flags": "m"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

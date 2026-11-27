@@ -1,0 +1,14 @@
+{
+  "id": "beast-mode",
+  "split": "heldout",
+  "mode": "agent",
+  "repo": "https://github.com/github/awesome-copilot",
+  "path": "agents/Thinking-Beast-Mode.agent.md",
+  "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf",
+  "license": "MIT",
+  "fetched": "2026-11-27",
+  "extraction": "whole file, unmodified",
+  "words": 2657,
+  "chars": 17798,
+  "sha256": "53f8b55fce98038d0b59d71146c439f363f5f6daf079237c37ed20e07711269d"
+}

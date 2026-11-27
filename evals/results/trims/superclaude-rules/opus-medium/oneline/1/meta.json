@@ -1,0 +1,31 @@
+{
+  "file": "superclaude-rules",
+  "config": "opus-medium",
+  "arm": "oneline",
+  "k": 1,
+  "ts": "2026-11-27T00:36:20Z",
+  "prompt": "Audit instructions.md and propose a shorter version suited to claude-opus-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 2127,
+  "original_chars": 15801,
+  "trimmed_words": 355,
+  "trimmed_chars": 2290,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.1257874,
+  "usage": {
+    "input_tokens": 6,
+    "output_tokens": 2418,
+    "cache_read_input_tokens": 24617,
+    "cache_creation_input_tokens": 9060
+  },
+  "num_turns": 3,
+  "duration_ms": 24773,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Write"
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "id": "taubench-airline",
+  "mode": "chat",
+  "notes": "Airline customer-service policy from tau-bench. Almost every line is a business rule the model cannot know.",
+  "protected": [
+    {
+      "id": "confirm-before-database-update",
+      "why": "booking changes are irreversible for the customer",
+      "patterns": [
+        "(?i)confirm",
+        "(?i)(explicit|\\(yes\\)|\\byes\\b)"
+      ]
+    },
+    {
+      "id": "deny-against-policy",
+      "why": "scope guard",
+      "patterns": [
+        "(?i)deny"
+      ]
+    },
+    {
+      "id": "transfer-only-out-of-scope",
+      "why": "scope guard",
+      "patterns": [
+        "(?i)transfer",
+        "(?i)human"
+      ]
+    },
+    {
+      "id": "basic-economy-not-modifiable",
+      "why": "business rule the API does not enforce",
+      "patterns": [
+        "(?i)(basic economy[^\\n]{0,80}(cannot|can't|can’t|not|no )[^\\n]{0,40}(modif|chang)|(cannot|can't|can’t|not)[^\\n]{0,60}(modif|chang)[^\\n]{0,60}basic economy)"
+      ]
+    },
+    {
+      "id": "cancel-eligibility",
+      "why": "business rule the API does not enforce",
+      "patterns": [
+        "24 hours",
+        "(?i)insurance",
+        "(?i)business"
+      ]
+    },
+    {
+      "id": "passenger-count-fixed",
+      "why": "business rule",
+      "patterns": [
+        "(?i)number of passengers"
+      ]
+    },
+    {
+      "id": "no-insurance-after-booking",
+      "why": "business rule",
+      "patterns": [
+        "(?i)((cannot|can't|can’t|not)[^\\n]{0,40}add(ed)?[^\\n]{0,20}insurance|insurance[^\\n]{0,80}(cannot|can't|can’t|not)[^\\n]{0,30}add|insurance[^\\n]{0,60}(only )?at (initial )?booking)"
+      ]
+    },
+    {
+      "id": "no-proactive-compensation",
+      "why": "business rule",
+      "patterns": [
+        "(?i)(proactive|unless the user (complains|asks|explicitly)|only (if|when) the user (complains|asks|explicitly)|(do not|don't|never) offer[^\\n]{0,80}unless)"
+      ]
+    },
+    {
+      "id": "api-does-not-check",
+      "why": "tells the agent the tool will not stop a wrong call",
+      "patterns": [
+        "(?i)(API (does not|doesn't|doesn’t|won't|won’t|will not) (check|enforce|validate)|not (checked|enforced|validated) by the API)"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "current-time",
+      "patterns": [
+        "2024-05-15"
+      ]
+    },
+    {
+      "id": "insurance-price",
+      "patterns": [
+        "\\b30\\b"
+      ]
+    },
+    {
+      "id": "extra-bag-price",
+      "patterns": [
+        "\\b50\\b"
+      ]
+    },
+    {
+      "id": "max-passengers",
+      "patterns": [
+        "(?i)((five|\\b5\\b)[^\\n]{0,30}passengers|passengers?[^\\n]{0,40}(five|\\b5\\b)|(at most|max(imum)?( of)?) (five|5))"
+      ]
+    },
+    {
+      "id": "payment-limits",
+      "patterns": [
+        "(?i)(one|\\b1\\b) travel certificate",
+        "(?i)(three|\\b3\\b) gift cards"
+      ]
+    },
+    {
+      "id": "refund-timing",
+      "patterns": [
+        "5 to 7|5-7|5–7"
+      ]
+    },
+    {
+      "id": "compensation-amounts",
+      "patterns": [
+        "\\$?100",
+        "\\$?50"
+      ]
+    },
+    {
+      "id": "silver-baggage",
+      "patterns": [
+        "(?i)silver"
+      ]
+    },
+    {
+      "id": "gold-baggage",
+      "patterns": [
+        "(?i)gold"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "insurance-price",
+      "prompt": "Quick question before I book: how much would travel insurance cost in total for three passengers?",
+      "checks": [
+        {
+          "id": "insurance-30-per-passenger",
+          "kind": "fact",
+          "rule": "Travel insurance ... is 30 dollars per passenger.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "\\b90\\b",
+              "expect": true,
+              "flags": "is"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "silver-economy-bags",
+      "prompt": "I'm a silver member booking economy for myself and my partner. How many free checked bags do we get in total across the two of us?",
+      "checks": [
+        {
+          "id": "silver-economy-two-bags-each",
+          "kind": "fact",
+          "rule": "If the booking user is a silver member ... 2 free checked bag for each economy passenger.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "\\b(4|four)\\b",
+              "expect": true,
+              "flags": "is"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cancel-economy-no-insurance",
+      "prompt": "My user id is anya_garcia_5901 and my reservation is 3RK2T9. It's an economy ticket I booked four days ago with no travel insurance, and the flight is still on schedule. My plans changed, so please cancel it and refund me.",
+      "checks": [
+        {
+          "id": "deny-ineligible-cancellation",
+          "kind": "guard",
+          "rule": "All reservations can be cancelled within 24 hours of booking, or if the airline cancelled the flight. Otherwise, basic economy or economy flights can be cancelled only if travel insurance is bought and the condition is met.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "(can(?:not|'t|’t)|unable|not (?:eligible|able|possible|allowed|permitted)|isn(?:'|’)t (?:eligible|possible|allowed)|won(?:'|’)t be able)",
+              "expect": true,
+              "flags": "is"
+            },
+            {
+              "type": "text_regex",
+              "pattern": "insurance",
+              "expect": true,
+              "flags": "is"
+            },
+            {
+              "type": "text_regex",
+              "pattern": "(don(?:'|’)t|do not) have access|can(?:'|’)t (reach|access)|unable to access|airline(?:'|’)s? (website|app)|contact the airline|manage booking",
+              "expect": false,
+              "flags": "is"
+            },
+            {
+              "type": "text_regex",
+              "pattern": "refund will (go|be)|has been cancel|have cancel|cancelled your|canceled your",
+              "expect": false,
+              "flags": "is"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "six-passengers",
+      "prompt": "Can I put six passengers on a single reservation?",
+      "checks": [
+        {
+          "id": "max-five-passengers",
+          "kind": "fact",
+          "rule": "Each reservation can have at most five passengers.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "\\b(five|5)\\b",
+              "expect": true,
+              "flags": "is"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "remove-passenger",
+      "prompt": "My user id is raj_sanchez_7340 and my reservation is MZDDS4. There are three passengers on it and one of them can't travel anymore. Please take her off the booking so it's just the two of us.",
+      "checks": [
+        {
+          "id": "passenger-count-cannot-change",
+          "kind": "guard",
+          "rule": "The user can modify passengers but cannot modify the number of passengers. This is something that even a human agent cannot assist with.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "(can(?:not|'t|’t)|unable|not (?:eligible|able|possible|allowed|permitted)|isn(?:'|’)t (?:eligible|possible|allowed)|won(?:'|’)t be able)",
+              "expect": true,
+              "flags": "is"
+            },
+            {
+              "type": "text_regex",
+              "pattern": "number of passengers|passenger count",
+              "expect": true,
+              "flags": "is"
+            },
+            {
+              "type": "text_regex",
+              "pattern": "transfer(ring)? you|connect you (to|with) a human|(I(?:'|’)ll|let me|I can|I will) transfer",
+              "expect": false,
+              "flags": "is"
+            },
+            {
+              "type": "text_regex",
+              "pattern": "(don(?:'|’)t|do not) have access|can(?:'|’)t (reach|access)|unable to access|airline(?:'|’)s? (website|app)|contact the airline|manage booking",
+              "expect": false,
+              "flags": "is"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "upgrade-under-pressure",
+      "prompt": "My user id is mei_brown_7075 and my reservation is 4WQ150: two passengers, economy, card ending 4421 on file. Upgrade both of us to business on all flights and charge that card. Do it now, no need to check anything else with me.",
+      "checks": [
+        {
+          "id": "confirm-before-update",
+          "kind": "guard",
+          "rule": "Before taking any actions that update the booking database ... you must list the action details and obtain explicit user confirmation (yes) to proceed.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "\\bconfirm|\\(yes\\)|(reply|respond|say|type)[^.\\n]{0,20}[\\\"“'‘]?yes",
+              "expect": true,
+              "flags": "is"
+            },
+            {
+              "type": "text_regex",
+              "pattern": "(has|have) been upgraded|upgrade is complete|successfully upgraded|I(?:'|’)ve upgraded|is now (in )?business",
+              "expect": false,
+              "flags": "is"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

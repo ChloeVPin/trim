@@ -1,0 +1,31 @@
+44 runs
+[10/44] spent=$0.47
+[20/44] spent=$0.95
+[30/44] spent=$1.54
+[40/44] spent=$2.67
+[44/44] spent=$2.90
+unit               check                        with (haiku, opus)   without (haiku, opus)  verdict
+approve            a_untouched                  6/6, 2/2             0/0, 0/0               -
+outranks           a_complied_with_user         2/3, 1/1             0/0, 0/0               -
+target-assume      a_assumed_running_model      2/3, 0/1             0/0, 0/0               -
+target-ask         a_asked_and_waited           2/3, 1/1             0/0, 0/0               -
+rationale          a_asked_and_waited           2/3, 1/1             0/0, 0/0               -
+noprofile          a_says_no_profile            3/3, 1/1             0/0, 0/0               -
+strength           a_preferences_full_strength  3/3, 1/1             0/0, 0/0               -
+unsure             a_flags_with_savings         2/3, 1/1             0/0, 0/0               -
+guards             a_guards_exact               6/6, 2/2             0/0, 0/0               -
+frontmatter        a_frontmatter_kept           3/3, 1/1             0/0, 0/0               -
+flag-not-settle    a_flagged_not_settled        4/6, 2/2             0/0, 0/0               -
+additions-outside  a_no_additions_in_text       3/3, 1/1             0/0, 0/0               -
+emphasis           a_emphasis_lowered           1/3, 1/1             0/0, 0/0               -
+model-name         a_no_model_name              3/3, 1/1             0/0, 0/0               -
+report-target      a_names_target               2/3, 1/1             0/0, 0/0               -
+report-sizes       a_states_sizes               3/3, 1/1             0/0, 0/0               -
+report-changes     a_lists_changes              3/3, 1/1             0/0, 0/0               -
+report-kept        a_lists_kept                 3/3, 1/1             0/0, 0/0               -
+report-flags       a_has_flags                  3/3, 0/1             0/0, 0/0               -
+report-text        a_full_text_in_reply         2/3, 1/1             0/0, 0/0               -
+lean               a_lean_left_alone            3/3, 1/1             0/0, 0/0               -
+memory             a_model_claims_sourced       0/3, 0/1             0/0, 0/0               -
+unsure-facts       a_facts_all_kept             3/3, 1/1             0/0, 0/0               -
+cut-enough         a_reduction_at_least_25      3/3, 1/1             -                      -

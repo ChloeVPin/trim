@@ -1,0 +1,14 @@
+{
+  "id": "superclaude-rules",
+  "split": "dev",
+  "mode": "agent",
+  "repo": "https://github.com/SuperClaude-Org/SuperClaude_Framework",
+  "path": "src/superclaude/core/RULES.md",
+  "commit": "fe68862c8ed9e2afb8120c2d9e27d0c3a7ce73a2",
+  "license": "MIT",
+  "fetched": "2026-11-27",
+  "extraction": "whole file, unmodified",
+  "words": 2127,
+  "chars": 15801,
+  "sha256": "d9f1b79ef3d01f86f8e8291aadb7066c42ee591bffcf72d485a591fbe573fefd"
+}

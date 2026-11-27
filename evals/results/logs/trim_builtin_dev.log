@@ -1,0 +1,10 @@
+8 trims to generate for arm 'builtin' (builtin)
+[1/8] cursorrules-nextjs haiku-high builtin#1: 578->578 words (-0%) $0.025 60s
+[2/8] cursorrules-nextjs opus-medium builtin#1: 578->565 words (-2%) $0.754 67s
+[3/8] daveshap-default-ci haiku-high builtin#1: 242->244 words (--1%) $0.031 71s
+[4/8] daveshap-default-ci opus-medium builtin#1: 242->119 words (-51%) $0.735 71s
+[5/8] superclaude-rules opus-medium builtin#1: 2127->1522 words (-28%) $0.989 112s
+[6/8] superclaude-rules haiku-high builtin#1: 2127->2004 words (-6%) $0.085 159s
+[7/8] taubench-airline haiku-high builtin#1: 1051->1088 words (--4%) $0.071 103s
+[8/8] taubench-airline opus-medium builtin#1: 1051->1005 words (-4%) $0.738 59s
+done: $3.43, 4.1 min

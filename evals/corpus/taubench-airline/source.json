@@ -1,0 +1,14 @@
+{
+  "id": "taubench-airline",
+  "split": "dev",
+  "mode": "chat",
+  "repo": "https://github.com/sierra-research/tau-bench",
+  "path": "tau_bench/envs/airline/wiki.md",
+  "commit": "59a200c6d575d595120f1cb70fea53cef0632f6b",
+  "license": "MIT",
+  "fetched": "2026-11-27",
+  "extraction": "whole file, unmodified",
+  "words": 1051,
+  "chars": 6155,
+  "sha256": "56c335801c16e26b54f600f9db99eb04d31db477e86eb160341d5c66b796c5c8"
+}

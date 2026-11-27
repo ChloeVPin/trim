@@ -1,0 +1,33 @@
+{
+  "file": "superclaude-rules",
+  "config": "haiku-high",
+  "arm": "skill-v1",
+  "k": 1,
+  "ts": "2026-11-27T00:51:38Z",
+  "skill_sha": "a27450dee29f0e3de50bd4598bc7b9a3a3c24e5847be0cb5287a9a75628c257c",
+  "prompt": "/trim instructions.md for claude-haiku-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 2127,
+  "original_chars": 15801,
+  "trimmed_words": 1411,
+  "trimmed_chars": 9449,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.02735591,
+  "usage": {
+    "input_tokens": 6,
+    "output_tokens": 35142,
+    "cache_read_input_tokens": 32711,
+    "cache_creation_input_tokens": 47286
+  },
+  "num_turns": 4,
+  "duration_ms": 144328,
+  "skill_invoked": false,
+  "read_profiles": true,
+  "tools": [
+    "Read",
+    "Read",
+    "Write"
+  ]
+}

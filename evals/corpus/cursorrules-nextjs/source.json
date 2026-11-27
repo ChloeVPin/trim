@@ -1,0 +1,14 @@
+{
+  "id": "cursorrules-nextjs",
+  "split": "dev",
+  "mode": "agent",
+  "repo": "https://github.com/PatrickJS/awesome-cursorrules",
+  "path": "rules/nextjs-react-typescript-cursorrules-prompt-file.mdc",
+  "commit": "b044f956f021b6e8877f16781bcfc466a6a120e9",
+  "license": "CC0-1.0",
+  "fetched": "2026-11-27",
+  "extraction": "whole file, unmodified",
+  "words": 578,
+  "chars": 3996,
+  "sha256": "ff8b10a61abd8228ebd97a0e0ac472d873945b27b3313032d8d45cc10a780f1e"
+}

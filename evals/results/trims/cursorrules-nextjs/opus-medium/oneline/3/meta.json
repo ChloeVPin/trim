@@ -1,0 +1,31 @@
+{
+  "file": "cursorrules-nextjs",
+  "config": "opus-medium",
+  "arm": "oneline",
+  "k": 3,
+  "ts": "2026-11-27T00:35:30Z",
+  "prompt": "Audit instructions.md and propose a shorter version suited to claude-opus-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 578,
+  "original_chars": 3996,
+  "trimmed_words": 340,
+  "trimmed_chars": 2404,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.100968,
+  "usage": {
+    "input_tokens": 6,
+    "output_tokens": 2993,
+    "cache_read_input_tokens": 19460,
+    "cache_creation_input_tokens": 4649
+  },
+  "num_turns": 3,
+  "duration_ms": 29272,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Write"
+  ]
+}

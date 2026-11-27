@@ -1,0 +1,4 @@
+60 runs
+haiku-high   direct     triggered 18/18
+haiku-high   indirect   triggered 8/12
+haiku-high   near-miss  triggered 0/30

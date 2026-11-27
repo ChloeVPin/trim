@@ -1,0 +1,35 @@
+{
+  "file": "cursorrules-nextjs",
+  "config": "haiku-high",
+  "arm": "builtin",
+  "k": 1,
+  "ts": "2026-11-27T00:39:07Z",
+  "prompt": "/claude-api prompt-audit instructions.md -- the target model is claude-haiku-5-5. Apply your proposed edits to a copy saved as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 578,
+  "original_chars": 3996,
+  "trimmed_words": 578,
+  "trimmed_chars": 3996,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.02495893,
+  "usage": {
+    "input_tokens": 10,
+    "output_tokens": 13336,
+    "cache_read_input_tokens": 280013,
+    "cache_creation_input_tokens": 77449
+  },
+  "num_turns": 7,
+  "duration_ms": 60272,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Glob",
+    "Read",
+    "Glob",
+    "Bash",
+    "Write"
+  ]
+}

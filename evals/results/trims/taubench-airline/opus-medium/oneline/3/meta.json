@@ -1,0 +1,31 @@
+{
+  "file": "taubench-airline",
+  "config": "opus-medium",
+  "arm": "oneline",
+  "k": 3,
+  "ts": "2026-11-27T00:37:32Z",
+  "prompt": "Audit instructions.md and propose a shorter version suited to claude-opus-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 1051,
+  "original_chars": 6155,
+  "trimmed_words": 641,
+  "trimmed_chars": 3868,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.0906898,
+  "usage": {
+    "input_tokens": 6,
+    "output_tokens": 2438,
+    "cache_read_input_tokens": 19929,
+    "cache_creation_input_tokens": 4740
+  },
+  "num_turns": 3,
+  "duration_ms": 24646,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Write"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "daveshap-slide-deck",
+  "split": "heldout",
+  "mode": "chat",
+  "repo": "https://github.com/daveshap/ChatGPT_Custom_Instructions",
+  "path": "slide_deck_maker.md",
+  "commit": "9ed79d25004a082e9ed6ffd1a3f6c014301aea37",
+  "license": "MIT",
+  "fetched": "2026-11-27",
+  "extraction": "first fenced code block (the slide-deck prompt; the second prompt in the file is not used)",
+  "words": 200,
+  "chars": 1208,
+  "sha256": "82fb6b2d0e7413a74d361d778979612a8c0649700f799e02593ceaf4503fbac6"
+}

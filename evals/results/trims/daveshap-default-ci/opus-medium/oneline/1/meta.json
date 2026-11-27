@@ -1,0 +1,31 @@
+{
+  "file": "daveshap-default-ci",
+  "config": "opus-medium",
+  "arm": "oneline",
+  "k": 1,
+  "ts": "2026-11-27T00:35:52Z",
+  "prompt": "Audit instructions.md and propose a shorter version suited to claude-opus-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 242,
+  "original_chars": 1382,
+  "trimmed_words": 131,
+  "trimmed_chars": 761,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.049102400000000004,
+  "usage": {
+    "input_tokens": 6,
+    "output_tokens": 1382,
+    "cache_read_input_tokens": 18392,
+    "cache_creation_input_tokens": 2220
+  },
+  "num_turns": 3,
+  "duration_ms": 16804,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Write"
+  ]
+}

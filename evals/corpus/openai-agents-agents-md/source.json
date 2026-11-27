@@ -1,0 +1,14 @@
+{
+  "id": "openai-agents-agents-md",
+  "split": "heldout",
+  "mode": "agent",
+  "repo": "https://github.com/openai/openai-agents-python",
+  "path": "AGENTS.md",
+  "commit": "6afdd47b4fab14d61e0e6f7c002e6ec9b36fcd71",
+  "license": "MIT",
+  "fetched": "2026-11-27",
+  "extraction": "whole file, unmodified",
+  "words": 2103,
+  "chars": 16627,
+  "sha256": "04c67f35d86eb2312f3e18435fb9a5e115e85d7837c10b7c39f57002a8d72b64"
+}

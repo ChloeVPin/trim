@@ -1,0 +1,251 @@
+{
+  "id": "fabric-extract-wisdom",
+  "mode": "chat",
+  "notes": "Fabric 'extract_wisdom' pattern: turns pasted content into nine fixed Markdown sections with item counts and 16-word bullets.",
+  "protected": [],
+  "facts": [
+    {
+      "id": "nine-sections",
+      "patterns": [
+        "SUMMARY",
+        "IDEAS",
+        "INSIGHTS",
+        "QUOTES",
+        "HABITS",
+        "FACTS",
+        "REFERENCES",
+        "(?i)ONE-SENTENCE TAKEAWAY",
+        "RECOMMENDATIONS"
+      ]
+    },
+    {
+      "id": "summary-25-words",
+      "patterns": [
+        "\\b25\\b"
+      ]
+    },
+    {
+      "id": "ideas-count",
+      "patterns": [
+        "\\b20\\b",
+        "\\b25\\b"
+      ]
+    },
+    {
+      "id": "insights-count",
+      "patterns": [
+        "\\b10\\b"
+      ]
+    },
+    {
+      "id": "bullets-16-words",
+      "patterns": [
+        "\\b16\\b|sixteen"
+      ]
+    },
+    {
+      "id": "takeaway-15-words",
+      "patterns": [
+        "\\b15\\b"
+      ]
+    },
+    {
+      "id": "quote-speaker",
+      "patterns": [
+        "(?i)speaker|name"
+      ]
+    },
+    {
+      "id": "bullets-not-numbered",
+      "patterns": [
+        "(?i)numbered"
+      ]
+    },
+    {
+      "id": "no-warnings-notes",
+      "patterns": [
+        "(?i)warning|notes"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "essay-slow-reading",
+      "prompt": "The Case for Reading Slowly\nAn essay by Miriam Okafor\n\nFor most of my twenties I measured reading the way some people measure running: in distance. I kept a spreadsheet. Fifty-two books a year was the target, and I hit it four years in a row. What I could not tell you, if you had asked me at the end of any of those years, was what more than a handful of those books had actually said. I had covered the ground without seeing the country.\n\nThe turn came when my grandfather died and left me his copy of Montaigne's Essays. It was a cheap paperback, spine cracked in six places, and almost every page carried pencil notes in his small, slanted hand. Some were arguments. Next to Montaigne's claim that to philosophize is to learn to die, he had written \"No. To learn to live with not knowing.\" Others were dates, which I eventually realized were the days he had reread a passage. One essay, \"Of Experience,\" had nine dates spanning thirty-one years.\n\nHe had read perhaps two hundred books in his life. I had read more than that before I turned thirty. But he owned his books in a way I had never owned anything I read.\n\nSo I changed my rules. I now read with a pencil, always. I do not start a new book until I have written a single page, by hand, about the last one: what it claimed, where I disagreed, and what I would do differently because of it. If I cannot fill the page, I go back and reread the parts I skimmed. I read the first chapter of any serious book twice before moving on, because the first chapter is usually where the author hides the whole argument.\n\nThe results surprised me. My annual count dropped to about eighteen books. My recall went up so sharply that I could reconstruct arguments from books I read three years ago. Researchers at the University of Stavanger found something similar in 2014: readers of a short mystery on paper were significantly better than Kindle readers at putting the plot's events in the right order. The physical position of a passage on a page seems to act as a memory anchor.\n\nThere is an older idea here too. Medieval monks practiced lectio divina, a slow reading in which a short text was read, repeated aloud, meditated on and finally prayed over. The point was not to finish but to be changed. The Roman writer Seneca warned his friend Lucilius that reading many authors and books of every sort may make you discursive and unsteady; he advised lingering among a limited number of master thinkers.\n\nI am not against speed. I skim newspapers, manuals and most of my email, and I should. The mistake is treating every text as if it were email. A book that took someone ten years to write deserves more than six hours of divided attention on a train.\n\nMy advice is simple. Keep a pencil in every book. Reread anything that moved you within a week. Write before you move on. Count what you remember, not what you finished. As my grandfather put it in the margin of the last page of Montaigne: \"Read less. Keep more.\"\n",
+      "checks": [
+        {
+          "id": "sections-in-order",
+          "kind": "format",
+          "rule": "SUMMARY, IDEAS, INSIGHTS, QUOTES, HABITS, FACTS, REFERENCES, ONE-SENTENCE TAKEAWAY, RECOMMENDATIONS (the nine sections of STEPS, in that order)",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "ism",
+              "pattern": "^[ \\t#*]*SUMMARY\\b.*^[ \\t#*]*IDEAS\\b.*^[ \\t#*]*INSIGHTS\\b.*^[ \\t#*]*QUOTES\\b.*^[ \\t#*]*HABITS\\b.*^[ \\t#*]*FACTS\\b.*^[ \\t#*]*REFERENCES\\b.*^[ \\t#*]*ONE-SENTENCE TAKEAWAY\\b.*^[ \\t#*]*RECOMMENDATIONS\\b"
+            }
+          ]
+        },
+        {
+          "id": "starts-with-summary",
+          "kind": "format",
+          "rule": "Do not give warnings or notes; only output the requested sections.",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "is",
+              "pattern": "\\A\\s*[#*]*\\s*SUMMARY\\b"
+            }
+          ]
+        },
+        {
+          "id": "bullets-not-numbered",
+          "kind": "format",
+          "rule": "You use bulleted lists for output, not numbered lists.",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "eq": 0,
+              "pattern": "^[ \\t]*\\d+[.)][ \\t]"
+            },
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 20,
+              "pattern": "^[ \\t]*[-*•][ \\t]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sleep-talk",
+      "prompt": "[Transcript, Sleep and the Learning Brain, a talk by Dr. Rafael Ortiz, neuroscientist, at a regional teachers' conference]\n\nThank you. I want to start with a confession. For the first ten years of my career I studied memory, and I slept about five and a half hours a night. I thought sleep was the price I paid for being alive, not part of how my brain actually worked. I was wrong, and the data that convinced me came from my own lab.\n\nHere is the basic finding. When you learn something during the day, a structure called the hippocampus holds a fragile first draft of it. During deep sleep, especially in the first half of the night, the hippocampus replays that draft, sometimes at many times normal speed, and the cortex gradually takes over the memory. In rats running a maze, we can literally watch the same sequence of neurons fire during sleep that fired while they ran. Disrupt that replay and the rat forgets the maze.\n\nIn humans the effect is large. Students who sleep after learning a list of word pairs typically remember twenty to forty percent more the next day than students who stay awake for the same number of hours. And pulling an all-nighter before an exam is close to the worst strategy we know of. One night of total sleep deprivation reduces the hippocampus's ability to form new memories by roughly forty percent.\n\nNow the part that matters for you as teachers. Teenagers are not lazy. At puberty the body's release of melatonin shifts later by about two hours. Asking a sixteen-year-old to be alert at seven thirty in the morning is like asking an adult to be alert at five thirty. When the school district in Seattle moved high school start times about an hour later in 2016, students gained around thirty-four minutes of sleep per night, and their grades in the first class of the day went up by four and a half percent.\n\nPeople always ask what I do personally, so here it is. I go to bed and get up at the same time every day, weekends included, because a consistent wake time anchors the whole clock. I stop caffeine by noon; it has a half-life of about five to six hours, so an afternoon coffee is still half in your blood at bedtime. I keep the bedroom cool, around eighteen degrees Celsius. And if I am learning something hard, like the Spanish I started last year, I review it in the evening rather than the morning, so that the first night of sleep works on it.\n\nMatthew Walker's book Why We Sleep brought a lot of this to the public. It has errors, and some of its numbers were exaggerated, but the central message holds.\n\nI will leave you with the line I put on the first slide of every lecture now: sleep is not the absence of learning, it is the second half of it. If you remember one thing, protect the night after the lesson as carefully as the lesson itself.\n\nThank you.\n",
+      "checks": [
+        {
+          "id": "ideas-at-least-20",
+          "kind": "format",
+          "rule": "Extract 20 to 50 ... ideas ... Make sure you extract at least 20.",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "im",
+              "pattern": "^[ \\t#*]*IDEAS\\b[^\\n]*\\n(?:[ \\t]*\\n)*(?:[ \\t]*[-*•][ \\t]+[^\\n]+(?:\\n|\\Z)(?:[ \\t]*\\n)*){20,}"
+            }
+          ]
+        },
+        {
+          "id": "insights-at-least-10",
+          "kind": "format",
+          "rule": "Extract at least 10 INSIGHTS from the content.",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "im",
+              "pattern": "^[ \\t#*]*INSIGHTS\\b[^\\n]*\\n(?:[ \\t]*\\n)*(?:[ \\t]*[-*•][ \\t]+[^\\n]+(?:\\n|\\Z)(?:[ \\t]*\\n)*){10,}"
+            }
+          ]
+        },
+        {
+          "id": "bullets-16-words",
+          "kind": "format",
+          "rule": "Write the IDEAS/INSIGHTS/HABITS/FACTS/RECOMMENDATIONS bullets as exactly 16 words.",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 40,
+              "pattern": "^[ \\t]*[-*•][ \\t]+(?:\\S+[ \\t]+){15}\\S+[ \\t]*$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vet-software-podcast",
+      "prompt": "[Episode 112 of The Long Game podcast. Host: Priya Raman. Guest: Tomasz Wiśniewski, founder of a twelve-person software company that makes scheduling tools for veterinary clinics.]\n\nPRIYA: Tomasz, you have run the company for eleven years and never raised venture money. Was that a principle or an accident?\n\nTOMASZ: An accident that became a principle. In year one nobody would fund software for vets, so we had to charge from the first month. That turned out to be the best thing that ever happened to us. When customers pay you from day one, they tell you the truth. Free users tell you what is interesting. Paying users tell you what is broken.\n\nPRIYA: You have a rule about meetings, I have heard.\n\nTOMASZ: No meeting without a written document first. Amazon made the six-page memo famous, but ours are one page. If you cannot explain the decision in one page, you are not ready to meet about it. Most meetings disappear once someone has to write the page.\n\nPRIYA: And you still answer support tickets yourself?\n\nTOMASZ: Every Friday morning, two hours, no exceptions. Founders who stop doing support start building for an imaginary customer. Last spring a receptionist in Ohio told me she printed our schedule every morning because the screen was too small at the front desk. We had a whole roadmap for an AI feature. We shipped a printable view instead, and it became our most used feature that year.\n\nPRIYA: Speaking of AI, are your customers using it?\n\nTOMASZ: Some are. What surprised me is that the clinics care much less about clever automation than about reliability. A veterinary clinic loses roughly one in ten appointments to no-shows. A simple text reminder the day before cuts that almost in half. That is a boring feature and it pays for our whole product.\n\nPRIYA: What about you personally? How do you avoid burning out?\n\nTOMASZ: I walk for an hour every morning without my phone. I read one book a month that has nothing to do with software; right now it is The Name of the Rose by Umberto Eco. And I never schedule anything on Wednesdays. Wednesday is for thinking. My calendar says \"closed.\"\n\nPRIYA: Biggest mistake?\n\nTOMASZ: Hiring too fast in year five. We went from seven to eighteen people in nine months, and the culture just dissolved. Paul Graham has an essay, Do Things That Don't Scale, that I reread every January, and I had forgotten it that year. We let people go, which was the worst month of my life, and we have grown slowly ever since. Small teams are not a stage you graduate from. They are a design choice.\n\nPRIYA: Last question. What would you tell someone starting out?\n\nTOMASZ: Pick a boring industry with real problems, charge money immediately, and stay close enough to customers that you can hear them sigh. Growth is a side effect of being useful. If you chase it directly, it runs away from you.\n\nPRIYA: Tomasz Wiśniewski, thank you.\n",
+      "checks": [
+        {
+          "id": "quotes-with-speaker",
+          "kind": "format",
+          "rule": "QUOTES: Use the exact quote text from the input. Include the name of the speaker of the quote at the end.",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 10,
+              "pattern": "^[ \\t]*[-*•][ \\t]+[^\\n]*[\\\"“][^\\n]{10,}[\\\"”][^\\n]*[—–-][ \\t]*\\**(?:Tomasz|Priya|Wi)"
+            }
+          ]
+        },
+        {
+          "id": "habits-at-least-15",
+          "kind": "format",
+          "rule": "Extract 15 to 30 of the most practical and useful personal habits ... into a section called HABITS.",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "im",
+              "pattern": "^[ \\t#*]*HABITS\\b[^\\n]*\\n(?:[ \\t]*\\n)*(?:[ \\t]*[-*•][ \\t]+[^\\n]+(?:\\n|\\Z)(?:[ \\t]*\\n)*){15,}"
+            }
+          ]
+        },
+        {
+          "id": "bullets-16-words",
+          "kind": "format",
+          "rule": "Write the IDEAS/INSIGHTS/HABITS/FACTS/RECOMMENDATIONS bullets as exactly 16 words.",
+          "all": [
+            {
+              "type": "regex_count",
+              "flags": "m",
+              "min": 40,
+              "pattern": "^[ \\t]*[-*•][ \\t]+(?:\\S+[ \\t]+){15}\\S+[ \\t]*$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maintenance-lecture",
+      "prompt": "[Transcript, a public lecture by Dr. Helen Achebe, civil engineer, titled \"The Unglamorous Work of Keeping Things Running\"]\n\nGood evening. I want to talk about the most underrated activity in modern civilization, which is maintenance.\n\nWe celebrate builders. We name bridges after the people who opened them, not the people who repainted them every seven years for half a century. Yet in most rich countries, the bigger problem is not that we lack new things. It is that we neglect the things we already have. The American Society of Civil Engineers gave United States infrastructure an overall grade of C-minus in 2021. Roughly one in thirteen bridges in that country was rated structurally deficient.\n\nThere is a reason for this, and it is not stupidity. Maintenance is invisible when it works. Nobody holds a ribbon cutting for a water main that did not burst. Politicians get credit for openings, so budgets drift toward openings. Economists call this a deferred cost, and it compounds. A rule of thumb in pavement engineering says that every dollar spent keeping a road in good condition saves six to ten dollars of reconstruction later.\n\nThe Japanese have a beautiful counterexample. The Ise Grand Shrine has been completely rebuilt every twenty years for more than thirteen centuries. Each rebuilding is done by carpenters who learned from the previous generation. The shrine is new and ancient at the same time, because what is preserved is not the wood but the skill.\n\nI think about this in my own life. Early in my career I was obsessed with designing new structures. My mentor, an inspector named Walter Brandt, took me under a highway overpass in the rain and showed me a crack no wider than a credit card. He said, \"Bridges don't fail on opening day. They fail on an ordinary Tuesday, forty years later, because nobody looked.\" I have never forgotten it.\n\nSo I now practice what I call maintenance habits. Every Sunday evening I spend twenty minutes on what I call the \"Sunday sweep\": I check my car tyres, back up my laptop, and walk around the house looking for drips and cracks. At work, my team spends the first hour of every Monday on known defects before anyone starts new design work. And I keep a written log of every repair, because memory is the first thing to fail.\n\nThe same logic applies to software, to relationships and to your body. Stewart Brand's book How Buildings Learn makes this case beautifully: buildings that last are the ones designed to be easily repaired, not the ones designed to look finished.\n\nIf I could change one thing, I would make maintenance visible. Publish the backlog. Celebrate the crew who replaced the pipes. Give the person who prevented a disaster the same applause as the person who built something new.\n\nBecause in the end, as Walter used to say, \"Anyone can build. Civilization is the decision to keep.\"\n\nThank you.\n",
+      "checks": [
+        {
+          "id": "sections-in-order",
+          "kind": "format",
+          "rule": "SUMMARY, IDEAS, INSIGHTS, QUOTES, HABITS, FACTS, REFERENCES, ONE-SENTENCE TAKEAWAY, RECOMMENDATIONS (the nine sections of STEPS, in that order)",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "ism",
+              "pattern": "^[ \\t#*]*SUMMARY\\b.*^[ \\t#*]*IDEAS\\b.*^[ \\t#*]*INSIGHTS\\b.*^[ \\t#*]*QUOTES\\b.*^[ \\t#*]*HABITS\\b.*^[ \\t#*]*FACTS\\b.*^[ \\t#*]*REFERENCES\\b.*^[ \\t#*]*ONE-SENTENCE TAKEAWAY\\b.*^[ \\t#*]*RECOMMENDATIONS\\b"
+            }
+          ]
+        },
+        {
+          "id": "summary-about-25-words",
+          "kind": "format",
+          "rule": "Extract a summary of the content in 25 words ... into a section called SUMMARY.",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "im",
+              "pattern": "^[ \\t#*]*SUMMARY\\b[^\\n]*\\n\\s*(?:[-*•][ \\t]+)?(?:\\S+[ \\t]+){19,29}\\S+[ \\t]*(?:\\n|\\Z)"
+            }
+          ]
+        },
+        {
+          "id": "takeaway-about-15-words",
+          "kind": "format",
+          "rule": "ONE-SENTENCE TAKEAWAY. This should be a 15-word sentence.",
+          "all": [
+            {
+              "type": "text_regex",
+              "flags": "im",
+              "pattern": "^[ \\t#*]*ONE-SENTENCE TAKEAWAY\\b[^\\n]*\\n\\s*(?:[-*•][ \\t]+)?(?:\\S+[ \\t]+){12,16}\\S+[ \\t]*(?:\\n|\\Z)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

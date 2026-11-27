@@ -1,0 +1,37 @@
+{
+  "file": "daveshap-default-ci",
+  "config": "haiku-high",
+  "arm": "builtin",
+  "k": 1,
+  "ts": "2026-11-27T00:39:07Z",
+  "prompt": "/claude-api prompt-audit instructions.md -- the target model is claude-haiku-5-5. Apply your proposed edits to a copy saved as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 242,
+  "original_chars": 1382,
+  "trimmed_words": 244,
+  "trimmed_chars": 1379,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.03095199,
+  "usage": {
+    "input_tokens": 16,
+    "output_tokens": 14759,
+    "cache_read_input_tokens": 542189,
+    "cache_creation_input_tokens": 90745
+  },
+  "num_turns": 9,
+  "duration_ms": 70899,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Glob",
+    "Read",
+    "Grep",
+    "Read",
+    "Grep",
+    "Read",
+    "Write"
+  ]
+}

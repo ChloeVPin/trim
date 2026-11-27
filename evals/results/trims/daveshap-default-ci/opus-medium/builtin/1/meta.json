@@ -1,0 +1,33 @@
+{
+  "file": "daveshap-default-ci",
+  "config": "opus-medium",
+  "arm": "builtin",
+  "k": 1,
+  "ts": "2026-11-27T00:40:09Z",
+  "prompt": "/claude-api prompt-audit instructions.md -- the target model is claude-opus-5-5. Apply your proposed edits to a copy saved as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 242,
+  "original_chars": 1382,
+  "trimmed_words": 119,
+  "trimmed_chars": 704,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.734606,
+  "usage": {
+    "input_tokens": 8,
+    "output_tokens": 6934,
+    "cache_read_input_tokens": 197790,
+    "cache_creation_input_tokens": 69542
+  },
+  "num_turns": 5,
+  "duration_ms": 70759,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Read",
+    "Glob",
+    "Write"
+  ]
+}

@@ -1,0 +1,14 @@
+120 runs to do (120 already recorded)
+[10/120] spent=$0.51 errors=0 eta=5.7min
+[20/120] spent=$1.14 errors=0 eta=4.8min
+[30/120] spent=$1.65 errors=0 eta=3.8min
+[40/120] spent=$1.95 errors=0 eta=3.2min
+[50/120] spent=$2.44 errors=0 eta=2.6min
+[60/120] spent=$2.64 errors=0 eta=2.0min
+[70/120] spent=$3.11 errors=0 eta=1.7min
+[80/120] spent=$4.24 errors=0 eta=1.5min
+[90/120] spent=$4.78 errors=0 eta=1.1min
+[100/120] spent=$4.98 errors=0 eta=0.7min
+[110/120] spent=$5.13 errors=0 eta=0.3min
+[120/120] spent=$5.31 errors=0 eta=0.0min
+done: 120 runs, $5.31, 0 errors, 3.8 min

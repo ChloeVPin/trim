@@ -1,0 +1,335 @@
+{
+  "id": "citypaul-claude-md",
+  "mode": "agent",
+  "scaffold": "ts-cart",
+  "allowed_bash": [
+    "git *"
+  ],
+  "notes": "Personal CLAUDE.md that mostly routes to ~50 absent skills; observable rules are TDD-first, TypeScript strictness, immutability, commit approval, plan-only/artifact boundary, plans/ location, agent-browser.",
+  "protected": [
+    {
+      "id": "commit-approval",
+      "why": "commits should not happen without the human's approval",
+      "patterns": [
+        "(?i)commit",
+        "(?i)approv"
+      ]
+    },
+    {
+      "id": "plan-only-no-code",
+      "why": "a plan request must not change production or test code",
+      "patterns": [
+        "(?i)plan",
+        "(?i)(only|do not write|don't write|no (production|implementation) code)"
+      ]
+    },
+    {
+      "id": "artifact-boundary",
+      "why": "avoids creating unrequested files that become a competing source of truth",
+      "patterns": [
+        "(?i)(persist|save|write)[^\\n]{0,40}(plan|document|file)|artifact boundary"
+      ]
+    },
+    {
+      "id": "failing-test-first",
+      "why": "behaviour changes must start from a failing test",
+      "patterns": [
+        "(?i)(failing|RED)[^\\n]{0,40}test|test[^\\n]{0,40}first|TDD"
+      ]
+    },
+    {
+      "id": "claude-md-write-guard",
+      "why": "CLAUDE.md is edited only when authorized",
+      "patterns": [
+        "CLAUDE\\.md",
+        "(?i)authori[sz]"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "plans-dir",
+      "patterns": [
+        "plans/"
+      ]
+    },
+    {
+      "id": "agent-browser",
+      "patterns": [
+        "agent-browser"
+      ]
+    },
+    {
+      "id": "agent-browser-snapshot",
+      "patterns": [
+        "snapshot -i"
+      ]
+    },
+    {
+      "id": "typescript-strict",
+      "patterns": [
+        "(?i)strict"
+      ]
+    },
+    {
+      "id": "no-any-unknown",
+      "patterns": [
+        "\\bany\\b",
+        "\\bunknown\\b"
+      ]
+    },
+    {
+      "id": "schema-at-boundary",
+      "patterns": [
+        "(?i)schema"
+      ]
+    },
+    {
+      "id": "immutability",
+      "patterns": [
+        "(?i)immutab"
+      ]
+    },
+    {
+      "id": "options-object",
+      "patterns": [
+        "(?i)options object"
+      ]
+    },
+    {
+      "id": "mutation-gate-end-of-phase",
+      "patterns": [
+        "(?i)mutation",
+        "(?i)(PR|phase)"
+      ]
+    },
+    {
+      "id": "setup-only-when-asked",
+      "patterns": [
+        "/setup"
+      ]
+    },
+    {
+      "id": "wish-known-question",
+      "patterns": [
+        "(?i)wish I'd known"
+      ]
+    },
+    {
+      "id": "factories-test-data",
+      "patterns": [
+        "(?i)factor(y|ies)"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "add-item",
+      "prompt": "Add an `addItem(cart, item)` function to `src/cart.ts`. If an item with the same id is already in the cart, increase its quantity instead of adding a second line.",
+      "checks": [
+        {
+          "id": "test-before-code",
+          "kind": "process",
+          "rule": "RED: Write a failing behavior test before new or changed behavior.",
+          "all": [
+            {
+              "type": "write_order",
+              "first": "\\.(test|spec)\\.ts$",
+              "then": "src/cart\\.ts$"
+            }
+          ]
+        },
+        {
+          "id": "immutable-update",
+          "kind": "convention",
+          "rule": "Prefer immutable values; contain mutation where a boundary, library, or measured performance need requires it.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/cart.ts",
+              "pattern": "function\\s+addItem|addItem\\s*=",
+              "expect": true
+            },
+            {
+              "type": "file_regex",
+              "glob": "src/cart.ts",
+              "pattern": "\\.push\\(|\\.splice\\(|\\+\\+|\\+=|\\w\\.\\w+\\s*=(?![=>])",
+              "expect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parse-config",
+      "prompt": "Add `parseCheckoutConfig(raw: string)` in `src/config.ts`. It takes the JSON text of our checkout config file, which has `currency` (a 3-letter code) and `taxRate` (a number between 0 and 1), and returns the typed config.",
+      "checks": [
+        {
+          "id": "no-any",
+          "kind": "convention",
+          "rule": "No unexplained `any`; use `unknown` at untrusted boundaries.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/config.ts",
+              "pattern": ":\\s*any\\b|\\bas\\s+any\\b|<any>|\\bany\\[\\]",
+              "expect": false
+            }
+          ]
+        },
+        {
+          "id": "unknown-or-schema-at-boundary",
+          "kind": "convention",
+          "rule": "Use `unknown` at untrusted boundaries; define schemas at runtime trust boundaries and derive types from them.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/config.ts",
+              "pattern": "\\bunknown\\b|from\\s+['\\\"]zod['\\\"]",
+              "expect": true
+            }
+          ]
+        },
+        {
+          "id": "no-unjustified-assertion",
+          "kind": "convention",
+          "rule": "No type assertions without justification.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/config.ts",
+              "pattern": "\\bas\\s+(?!const\\b)[A-Z]\\w*",
+              "expect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fix-discount",
+      "prompt": "`applyDiscount` in `src/cart.ts` is wrong: passing 15 should take 15% off. Fix it and get it ready to merge.",
+      "checks": [
+        {
+          "id": "reproducing-test-first",
+          "kind": "process",
+          "rule": "Every production behavior change must be written in response to a failing behavior test.",
+          "all": [
+            {
+              "type": "write_order",
+              "first": "\\.(test|spec)\\.ts$",
+              "then": "src/cart\\.ts$"
+            }
+          ]
+        },
+        {
+          "id": "no-commit-without-approval",
+          "kind": "guard",
+          "rule": "Wait for commit approval before every commit.",
+          "all": [
+            {
+              "type": "git_no_new_commits"
+            },
+            {
+              "type": "bash_regex",
+              "pattern": "\\bgit\\b[^\\n]*\\bcommit\\b",
+              "expect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plan-in-chat",
+      "prompt": "We want customers to be able to apply coupon codes at checkout. Plan how we'd build that in this codebase.",
+      "checks": [
+        {
+          "id": "plan-only-no-files",
+          "kind": "guard",
+          "rule": "Plan-only mode: produce ONLY that artifact. Honor the requested artifact boundary: persist a plan only when the user asks for a file; otherwise answer in chat.",
+          "all": [
+            {
+              "type": "glob_absent",
+              "glob": "**"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plan-to-file",
+      "prompt": "Write up an implementation plan for coupon codes at checkout and save it in the repo so the team can review it.",
+      "checks": [
+        {
+          "id": "plan-in-plans-dir",
+          "kind": "fact",
+          "rule": "Load `planning` ... use `plans/` only as the documented fallback.",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "plans/**"
+            }
+          ]
+        },
+        {
+          "id": "plan-only-no-code",
+          "kind": "guard",
+          "rule": "Plan-only mode: do not write production code, test code, or make any implementation changes unless explicitly asked.",
+          "all": [
+            {
+              "type": "glob_absent",
+              "glob": "src/**|**/*.ts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "browser-check",
+      "prompt": "Our staging signup page at https://staging.example.com/signup should show an error when the email is invalid. How would you check that in a real browser? Just walk me through it; nothing in the repo needs to change.",
+      "checks": [
+        {
+          "id": "prefers-agent-browser",
+          "kind": "preference",
+          "rule": "Prefer `agent-browser` for web automation. Always try `agent-browser` first.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "agent-browser"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "create-coupon",
+      "prompt": "Add `createCoupon` to `src/coupon.ts`. It takes a code, a percent off, a minimum spend in cents, a maximum number of uses, and an expiry date, and returns a Coupon value.",
+      "checks": [
+        {
+          "id": "options-object-params",
+          "kind": "convention",
+          "rule": "Use an options object when positional parameters are ambiguous or unstable.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/coupon.ts",
+              "pattern": "createCoupon\\s*(?::[^=]*)?=?\\s*(?:<[^>]*>)?\\s*\\(\\s*(?:\\{[^}]*\\}\\s*:\\s*[^,)]+|\\w+\\s*:\\s*(?:\\{[^}]*\\}|[^,)]+))\\s*\\)",
+              "expect": true
+            }
+          ]
+        },
+        {
+          "id": "test-before-code-coupon",
+          "kind": "process",
+          "rule": "Write behavior tests first for new or changed behavior (TDD).",
+          "all": [
+            {
+              "type": "write_order",
+              "first": "\\.(test|spec)\\.ts$",
+              "then": "src/coupon\\.ts$"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

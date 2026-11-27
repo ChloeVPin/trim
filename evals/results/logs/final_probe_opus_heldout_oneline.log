@@ -1,0 +1,12 @@
+93 runs to do (1140 already recorded)
+[10/93] spent=$1.21 errors=0 eta=10.1min
+[20/93] spent=$2.17 errors=0 eta=7.5min
+[30/93] spent=$3.19 errors=0 eta=5.7min
+[40/93] spent=$4.50 errors=0 eta=4.6min
+[50/93] spent=$5.08 errors=0 eta=3.4min
+[60/93] spent=$5.33 errors=0 eta=2.3min
+[70/93] spent=$5.68 errors=0 eta=1.5min
+[80/93] spent=$6.44 errors=0 eta=0.8min
+[90/93] spent=$7.33 errors=0 eta=0.2min
+[93/93] spent=$7.66 errors=0 eta=0.0min
+done: 93 runs, $7.66, 0 errors, 6.1 min

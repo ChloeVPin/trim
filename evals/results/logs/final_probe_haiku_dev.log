@@ -1,0 +1,8 @@
+60 runs to do (1443 already recorded)
+[10/60] spent=$0.04 errors=0 eta=4.5min
+[20/60] spent=$0.05 errors=0 eta=2.4min
+[30/60] spent=$0.08 errors=0 eta=1.8min
+[40/60] spent=$0.14 errors=0 eta=1.1min
+[50/60] spent=$0.16 errors=0 eta=0.5min
+[60/60] spent=$0.17 errors=0 eta=0.0min
+done: 60 runs, $0.17, 0 errors, 2.5 min

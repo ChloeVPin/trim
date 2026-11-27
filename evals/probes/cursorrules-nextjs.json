@@ -1,0 +1,282 @@
+{
+  "id": "cursorrules-nextjs",
+  "mode": "agent",
+  "scaffold": "next-app",
+  "notes": "Generic Next.js coding rules with a few project-specific conventions buried in them.",
+  "protected": [],
+  "facts": [
+    {
+      "id": "next-safe-action",
+      "patterns": [
+        "next-safe-action"
+      ]
+    },
+    {
+      "id": "action-response-type",
+      "patterns": [
+        "ActionResponse"
+      ]
+    },
+    {
+      "id": "action-response-import-path",
+      "patterns": [
+        "@/types/actions"
+      ]
+    },
+    {
+      "id": "services-dir-errors",
+      "patterns": [
+        "services/",
+        "(?i)tan ?stack"
+      ]
+    },
+    {
+      "id": "omit-semicolons",
+      "patterns": [
+        "(?i)semicolon"
+      ]
+    },
+    {
+      "id": "named-exports",
+      "patterns": [
+        "(?i)named export"
+      ]
+    },
+    {
+      "id": "interfaces-at-file-end",
+      "patterns": [
+        "(?i)(file end|end of (the )?file|bottom of (the )?file|static content[^\\n]{0,40}(types|interfaces)|(types|interfaces)[^\\n]{0,20}(last|at the end))"
+      ]
+    },
+    {
+      "id": "kebab-directories",
+      "patterns": [
+        "(?i)(lowercase with dashes|kebab|auth-wizard)"
+      ]
+    },
+    {
+      "id": "use-action-state",
+      "patterns": [
+        "useActionState"
+      ]
+    },
+    {
+      "id": "zod",
+      "patterns": [
+        "(?i)zod"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "format-price-util",
+      "prompt": "Add a `formatPrice(cents, currency)` utility in `lib/format-price.ts` that returns a localized price string. Keep it small.",
+      "checks": [
+        {
+          "id": "no-semicolons",
+          "kind": "convention",
+          "rule": "Omit semicolons.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "lib/format-price.ts",
+              "pattern": ";[ \\t]*$",
+              "expect": false,
+              "flags": "ms"
+            }
+          ]
+        },
+        {
+          "id": "function-keyword",
+          "kind": "convention",
+          "rule": "Use \"function\" keyword for pure functions.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "lib/format-price.ts",
+              "pattern": "^\\s*(export\\s+)?function\\s+formatPrice\\b",
+              "expect": true,
+              "flags": "ms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "user-card-component",
+      "prompt": "Create a reusable `UserCard` component in `components/user-card.tsx`. Props: name, email, and an optional avatarUrl. Show the avatar (or the initials when there is no avatar), the name and the email.",
+      "checks": [
+        {
+          "id": "named-export",
+          "kind": "convention",
+          "rule": "Favor named exports for components.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "components/user-card.tsx",
+              "pattern": "export\\s+default",
+              "expect": false,
+              "flags": "ms"
+            }
+          ]
+        },
+        {
+          "id": "function-component",
+          "kind": "convention",
+          "rule": "Use function, not const, for components.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "components/user-card.tsx",
+              "pattern": "function\\s+UserCard\\b",
+              "expect": true,
+              "flags": "ms"
+            },
+            {
+              "type": "file_regex",
+              "glob": "components/user-card.tsx",
+              "pattern": "const\\s+UserCard\\s*[:=]",
+              "expect": false,
+              "flags": "ms"
+            }
+          ]
+        },
+        {
+          "id": "interface-for-props",
+          "kind": "convention",
+          "rule": "Prefer interfaces over types.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "components/user-card.tsx",
+              "pattern": "^\\s*(export\\s+)?interface\\s+\\w+",
+              "expect": true,
+              "flags": "ms"
+            },
+            {
+              "type": "file_regex",
+              "glob": "components/user-card.tsx",
+              "pattern": "^\\s*(export\\s+)?type\\s+\\w*Props\\b",
+              "expect": false,
+              "flags": "ms"
+            }
+          ]
+        },
+        {
+          "id": "interfaces-at-file-end",
+          "kind": "convention",
+          "rule": "Place static content and interfaces at file end.",
+          "all": [
+            {
+              "type": "file_order",
+              "glob": "components/user-card.tsx",
+              "first": "function\\s+UserCard\\b",
+              "then": "^\\s*(export\\s+)?interface\\s+\\w+"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "server-action",
+      "prompt": "Add a server action `updateDisplayName` in `app/actions/update-display-name.ts`. It takes a userId and a displayName (2 to 40 characters), validates them, and saves with `db.user.update` from `@/lib/db`.",
+      "checks": [
+        {
+          "id": "uses-next-safe-action",
+          "kind": "fact",
+          "rule": "Use next-safe-action for all server actions.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "app/actions/*.ts|lib/*.ts",
+              "pattern": "next-safe-action",
+              "expect": true,
+              "flags": "ms"
+            }
+          ]
+        },
+        {
+          "id": "returns-action-response",
+          "kind": "fact",
+          "rule": "Use import type { ActionResponse } from '@/types/actions'; ensure all server actions return the ActionResponse type.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "app/actions/*.ts",
+              "pattern": "ActionResponse",
+              "expect": true,
+              "flags": "ms"
+            }
+          ]
+        },
+        {
+          "id": "zod-input-schema",
+          "kind": "convention",
+          "rule": "Define input schemas using Zod.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "app/actions/*.ts",
+              "pattern": "from\\s+['\\\"]zod['\\\"]",
+              "expect": true,
+              "flags": "ms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "signup-wizard-folder",
+      "prompt": "Create a signup wizard as its own folder under `components/`, with an index file that exports the wizard and one file for the first step (email and password fields). No need to wire it into a page.",
+      "checks": [
+        {
+          "id": "kebab-case-directory",
+          "kind": "convention",
+          "rule": "Use lowercase with dashes for directories (e.g., components/auth-wizard).",
+          "all": [
+            {
+              "type": "path_regex",
+              "glob": "components/*/**",
+              "pattern": "^components/[a-z0-9]+(-[a-z0-9]+)*/",
+              "quantifier": "all"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clamp-helper",
+      "prompt": "Add a helper in `lib/clamp.ts` that clamps a value between a min and a max. Throw a RangeError when min is greater than max.",
+      "checks": [
+        {
+          "id": "roro-object-parameter",
+          "kind": "convention",
+          "rule": "Use the Receive an Object, Return an Object (RORO) pattern.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "lib/clamp.ts",
+              "pattern": "function\\s+clamp\\s*(<[^>]*>)?\\s*\\(\\s*\\{",
+              "expect": true,
+              "flags": "ms"
+            }
+          ]
+        },
+        {
+          "id": "one-line-conditional",
+          "kind": "convention",
+          "rule": "For single-line statements in conditionals, omit curly braces.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "lib/clamp.ts",
+              "pattern": "if\\s*\\([^\\n{]*\\)\\s*(throw|return)\\b",
+              "expect": true,
+              "flags": "ms"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

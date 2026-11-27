@@ -1,0 +1,34 @@
+{
+  "file": "superclaude-rules",
+  "config": "haiku-high",
+  "arm": "builtin",
+  "k": 1,
+  "ts": "2026-11-27T00:40:15Z",
+  "prompt": "/claude-api prompt-audit instructions.md -- the target model is claude-haiku-5-5. Apply your proposed edits to a copy saved as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 2127,
+  "original_chars": 15801,
+  "trimmed_words": 2004,
+  "trimmed_chars": 14834,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.08483148,
+  "usage": {
+    "input_tokens": 8,
+    "output_tokens": 40669,
+    "cache_read_input_tokens": 204466,
+    "cache_creation_input_tokens": 107689
+  },
+  "num_turns": 6,
+  "duration_ms": 159438,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Glob",
+    "Read",
+    "Glob",
+    "Write"
+  ]
+}

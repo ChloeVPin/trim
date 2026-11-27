@@ -1,0 +1,32 @@
+{
+  "file": "fabric-extract-wisdom",
+  "config": "haiku-high",
+  "arm": "oneline",
+  "k": 3,
+  "ts": "2026-11-27T01:23:12Z",
+  "prompt": "Audit instructions.md and propose a shorter version suited to claude-haiku-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 539,
+  "original_chars": 3251,
+  "trimmed_words": 301,
+  "trimmed_chars": 1828,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.0047580899999999995,
+  "usage": {
+    "input_tokens": 8,
+    "output_tokens": 5927,
+    "cache_read_input_tokens": 28739,
+    "cache_creation_input_tokens": 7532
+  },
+  "num_turns": 4,
+  "duration_ms": 26364,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Glob",
+    "Read",
+    "Write"
+  ]
+}

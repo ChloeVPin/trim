@@ -1,0 +1,161 @@
+{
+  "id": "superclaude-rules",
+  "mode": "agent",
+  "scaffold": "js-cart",
+  "allowed_bash": [
+    "git *"
+  ],
+  "notes": "Long, emphatic behavioural rules for Claude Code with a few concrete conventions (file locations, git workflow).",
+  "protected": [
+    {
+      "id": "never-work-on-main",
+      "why": "guards the shared branch",
+      "patterns": [
+        "(?i)(main|master)",
+        "(?i)(feature )?branch"
+      ]
+    },
+    {
+      "id": "never-skip-tests",
+      "why": "guards against hiding failures",
+      "patterns": [
+        "(?i)(skip|disable|comment(ing)? out)[^\\n]{0,60}tests?|tests?[^\\n]{0,60}(skip|disable|comment(ing)? out)"
+      ]
+    },
+    {
+      "id": "no-auto-commit",
+      "why": "commits are hard to take back once pushed",
+      "patterns": [
+        "(?i)(no auto-?commit|never (auto-?)?commit|don't commit|do not commit|commit only|without being asked)"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "claudedocs-dir",
+      "patterns": [
+        "claudedocs/"
+      ]
+    },
+    {
+      "id": "tests-dir",
+      "patterns": [
+        "tests/"
+      ]
+    },
+    {
+      "id": "scripts-dir",
+      "patterns": [
+        "scripts/"
+      ]
+    },
+    {
+      "id": "session-commands",
+      "patterns": [
+        "/sc:load",
+        "/sc:save"
+      ]
+    },
+    {
+      "id": "mcp-context7-docs",
+      "patterns": [
+        "(?i)context7"
+      ]
+    },
+    {
+      "id": "mcp-playwright-browser",
+      "patterns": [
+        "(?i)playwright"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "analysis-report",
+      "prompt": "Review `src/cart.js` and write a short analysis of its problems. Save it as a markdown file.",
+      "checks": [
+        {
+          "id": "reports-in-claudedocs",
+          "kind": "fact",
+          "rule": "Claude-Specific Documentation: put reports, analyses, summaries in `claudedocs/` directory.",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "claudedocs/**/*.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-test",
+      "prompt": "Add unit tests for the `total` function in `src/cart.js` using node:test.",
+      "checks": [
+        {
+          "id": "tests-in-tests-dir",
+          "kind": "convention",
+          "rule": "Test Organization: place all tests in `tests/`, `__tests__/`, or `test/`; never next to source files.",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "tests/**|__tests__/**|test/**"
+            },
+            {
+              "type": "glob_absent",
+              "glob": "src/**/*.test.*|src/**/*.spec.*|*.test.*|*.spec.*"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utility-script",
+      "prompt": "Write a small Node script that prints the line count of every file under `src/`.",
+      "checks": [
+        {
+          "id": "scripts-in-scripts-dir",
+          "kind": "convention",
+          "rule": "Script Organization: place utility scripts in `scripts/`, `tools/`, or `bin/`.",
+          "all": [
+            {
+              "type": "glob_exists",
+              "glob": "scripts/**|tools/**|bin/**"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "readme-typo",
+      "prompt": "Fix the typo in README.md.",
+      "checks": [
+        {
+          "id": "feature-branch",
+          "kind": "guard",
+          "rule": "Feature Branches Only: create feature branches for ALL work, never work on main/master.",
+          "all": [
+            {
+              "type": "git_branch_not",
+              "names": [
+                "main",
+                "master",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "id": "git-status-first",
+          "kind": "process",
+          "rule": "Always Check Status First: start every session with `git status` and `git branch`.",
+          "all": [
+            {
+              "type": "bash_regex",
+              "pattern": "git\\s+status"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

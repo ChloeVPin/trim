@@ -1,0 +1,35 @@
+33 trims to generate for arm 'skill' (skill)
+[1/33] beast-mode opus-medium skill#3: 2657->332 words (-88%) $0.207 38s
+[2/33] beast-mode opus-medium skill#1: 2657->348 words (-87%) $0.220 45s
+[3/33] beast-mode opus-medium skill#2: 2657->783 words (-71%) $0.276 59s
+[4/33] citypaul-claude-md opus-medium skill#1: 2933->2382 words (-19%) $0.368 73s
+[5/33] cursorrules-nextjs opus-medium skill#1: 578->448 words (-22%) $0.172 37s
+[6/33] cursorrules-nextjs opus-medium skill#2: 578->390 words (-33%) $0.174 37s
+[7/33] citypaul-claude-md opus-medium skill#3: 2933->1912 words (-35%) $0.350 69s
+[8/33] citypaul-claude-md opus-medium skill#2: 2933->1941 words (-34%) $0.435 86s
+[9/33] cursorrules-nextjs opus-medium skill#3: 578->410 words (-29%) $0.162 32s
+[10/33] daveshap-default-ci opus-medium skill#1: 242->189 words (-22%) $0.185 42s
+[11/33] daveshap-default-ci opus-medium skill#2: 242->207 words (-14%) $0.172 42s
+[12/33] daveshap-slide-deck opus-medium skill#1: 200->180 words (-10%) $0.156 31s
+[13/33] daveshap-default-ci opus-medium skill#3: 242->180 words (-26%) $0.195 45s
+[14/33] daveshap-slide-deck opus-medium skill#3: 200->170 words (-15%) $0.147 29s
+[15/33] daveshap-slide-deck opus-medium skill#2: 200->170 words (-15%) $0.170 35s
+[16/33] fabric-extract-wisdom opus-medium skill#1: 539->439 words (-19%) $0.271 59s
+[17/33] fabric-extract-wisdom opus-medium skill#3: 539->424 words (-21%) $0.169 36s
+[18/33] fabric-extract-wisdom opus-medium skill#2: 539->427 words (-21%) $0.247 55s
+[19/33] karpathy-claude-md opus-medium skill#1: 358->266 words (-26%) $0.189 48s
+[20/33] karpathy-claude-md opus-medium skill#2: 358->272 words (-24%) $0.166 37s
+[21/33] karpathy-claude-md opus-medium skill#3: 358->261 words (-27%) $0.237 56s
+[22/33] openai-agents-agents-md opus-medium skill#1: 2103->2062 words (-2%) $0.367 75s
+[23/33] openai-agents-agents-md opus-medium skill#2: 2103->2067 words (-2%) $0.361 73s
+[24/33] openai-agents-agents-md opus-medium skill#3: 2103->2078 words (-1%) $0.352 69s
+[25/33] superclaude-rules opus-medium skill#1: 2127->780 words (-63%) $0.284 61s
+[26/33] superclaude-rules opus-medium skill#2: 2127->752 words (-65%) $0.300 66s
+[27/33] superpowers-tdd opus-medium skill#1: 1475->724 words (-51%) $0.216 42s
+[28/33] superclaude-rules opus-medium skill#3: 2127->861 words (-60%) $0.320 71s
+[29/33] superpowers-tdd opus-medium skill#2: 1475->723 words (-51%) $0.230 47s
+[30/33] taubench-airline opus-medium skill#1: 1051->1034 words (-2%) $0.198 40s
+[31/33] superpowers-tdd opus-medium skill#3: 1475->565 words (-62%) $0.233 52s
+[32/33] taubench-airline opus-medium skill#2: 1051->1051 words (-0%) $0.197 39s
+[33/33] taubench-airline opus-medium skill#3: 1051->1034 words (-2%) $0.215 50s
+done: $7.94, 7.4 min

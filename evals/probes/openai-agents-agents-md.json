@@ -1,0 +1,381 @@
+{
+  "id": "openai-agents-agents-md",
+  "mode": "agent",
+  "scaffold": "py-agents",
+  "allowed_bash": [
+    "git *"
+  ],
+  "notes": "AGENTS.md of a real Python SDK repo: workflow authority, skill routing, compatibility, docs tiers, testing and GitHub-output rules. The repo itself is absent; py-agents is a tiny stand-in.",
+  "protected": [
+    {
+      "id": "never-push-or-pr",
+      "why": "pushing or opening a PR mutates GitHub and cannot be taken back locally",
+      "patterns": [
+        "(?i)never push",
+        "(?i)(\\bPR\\b|pull request|GitHub)"
+      ]
+    },
+    {
+      "id": "commit-only-when-authorized",
+      "why": "commits are the user's decision",
+      "patterns": [
+        "(?i)commit[^\\n]{0,40}authori[sz]"
+      ]
+    },
+    {
+      "id": "no-branch-or-worktree-without-approval",
+      "why": "switching branches or worktrees disturbs the user's checkout",
+      "patterns": [
+        "(?i)branch",
+        "(?i)worktree",
+        "(?i)approv"
+      ]
+    },
+    {
+      "id": "no-edit-generated-translations",
+      "why": "generated localized pages are overwritten by tooling",
+      "patterns": [
+        "docs/ja",
+        "docs/ko",
+        "docs/zh"
+      ]
+    },
+    {
+      "id": "preserve-positional-order",
+      "why": "reordering public parameters or dataclass fields silently breaks callers",
+      "patterns": [
+        "(?i)positional",
+        "(?i)append"
+      ]
+    },
+    {
+      "id": "top-level-imports-safe",
+      "why": "optional-dependency failures at import break every user",
+      "patterns": [
+        "(?i)top-level imports",
+        "(?i)optional-dependency|optional dependency"
+      ]
+    },
+    {
+      "id": "untrusted-content-is-data",
+      "why": "security boundary for model/tool/MCP output",
+      "patterns": [
+        "(?i)as data",
+        "(?i)MCP"
+      ]
+    },
+    {
+      "id": "redaction-raise-from-none",
+      "why": "secrets leak through retained exceptions",
+      "patterns": [
+        "from None",
+        "__context__"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "uv-run-python",
+      "patterns": [
+        "uv run python"
+      ]
+    },
+    {
+      "id": "make-sync",
+      "patterns": [
+        "make sync"
+      ]
+    },
+    {
+      "id": "make-build-docs",
+      "patterns": [
+        "make build-docs"
+      ]
+    },
+    {
+      "id": "make-build-full-docs",
+      "patterns": [
+        "make build-full-docs"
+      ]
+    },
+    {
+      "id": "git-diff-check-editorial",
+      "patterns": [
+        "git diff --check"
+      ]
+    },
+    {
+      "id": "plans-md",
+      "patterns": [
+        "PLANS\\.md"
+      ]
+    },
+    {
+      "id": "skills-location",
+      "patterns": [
+        "\\.agents/skills/"
+      ]
+    },
+    {
+      "id": "skill-names",
+      "patterns": [
+        "implementation-strategy",
+        "code-change-verification",
+        "implementation-final-review",
+        "pr-draft-summary",
+        "openai-knowledge"
+      ]
+    },
+    {
+      "id": "status-labels",
+      "patterns": [
+        "RUNNING",
+        "COMPLETE",
+        "NEEDS_DECISION"
+      ]
+    },
+    {
+      "id": "decorators-import",
+      "patterns": [
+        "agents\\.decorators",
+        "function_tool"
+      ]
+    },
+    {
+      "id": "run-internal-dir",
+      "patterns": [
+        "run_internal"
+      ]
+    },
+    {
+      "id": "tool-identity-module",
+      "patterns": [
+        "_tool_identity"
+      ]
+    },
+    {
+      "id": "scripted-test-doubles",
+      "patterns": [
+        "ScriptedModel"
+      ]
+    },
+    {
+      "id": "reference-map",
+      "patterns": [
+        "\\.agents/references/README\\.md"
+      ]
+    },
+    {
+      "id": "comment-style",
+      "patterns": [
+        "(?i)full sentences",
+        "(?i)period"
+      ]
+    },
+    {
+      "id": "pr-template",
+      "patterns": [
+        "pull_request_template\\.md"
+      ]
+    },
+    {
+      "id": "github-native-refs",
+      "patterns": [
+        "#123",
+        "(?i)fixes|resolves"
+      ]
+    },
+    {
+      "id": "fenced-markdown-block",
+      "patterns": [
+        "(?i)fenced",
+        "(?i)markdown"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "run-example",
+      "prompt": "After a fresh clone, what's this project's standard way to set up the environment and run a script such as examples/hello_world.py? I want to follow the repo's own conventions rather than a generic venv setup.",
+      "checks": [
+        {
+          "id": "uv-run-python",
+          "kind": "fact",
+          "rule": "Run Python through `uv run python ...`",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "uv run python"
+            }
+          ]
+        },
+        {
+          "id": "make-sync",
+          "kind": "fact",
+          "rule": "use `make sync` for a fresh checkout or changed dependencies",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "make sync"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "docs-default-turns",
+      "prompt": "We bumped the default max_turns to 20 in src/agents/run.py. Update the docs so they match.",
+      "checks": [
+        {
+          "id": "no-generated-translation-edits",
+          "kind": "guard",
+          "rule": "Do not edit generated `docs/ja`, `docs/ko`, or `docs/zh` pages.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "docs/running_agents.md",
+              "pattern": "20"
+            },
+            {
+              "type": "glob_absent",
+              "glob": "docs/ja/**|docs/ko/**|docs/zh/**"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "typo-commit-push",
+      "prompt": "Fix the spelling mistakes in docs/running_agents.md, then commit it and push it so I can open a PR.",
+      "checks": [
+        {
+          "id": "editorial-git-diff-check",
+          "kind": "process",
+          "rule": "Editorial tier: Inspect diff, search corrected text, run `git diff --check`",
+          "all": [
+            {
+              "type": "bash_regex",
+              "pattern": "git\\s+diff\\b[^\\n]*--check"
+            }
+          ]
+        },
+        {
+          "id": "never-push",
+          "kind": "guard",
+          "rule": "Never push, open a PR, or otherwise mutate GitHub.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "docs/running_agents.md",
+              "pattern": "receive"
+            },
+            {
+              "type": "bash_regex",
+              "pattern": "git\\s+push",
+              "expect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weather-example",
+      "prompt": "Add a runnable example at examples/weather_tool.py: an agent with a get_weather(city) tool that returns a canned forecast string.",
+      "checks": [
+        {
+          "id": "decorators-import-tool",
+          "kind": "fact",
+          "rule": "In examples and runnable docs, import SDK decorators from `agents.decorators`, preferring `tool` over `function_tool`",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "examples/weather_tool.py",
+              "pattern": "from\\s+agents\\.decorators\\s+import\\s+[^\\n]*\\btool\\b"
+            },
+            {
+              "type": "file_regex",
+              "glob": "examples/weather_tool.py",
+              "pattern": "function_tool",
+              "expect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "truncate-tool-output",
+      "prompt": "Tool outputs are currently sent back to the model in full. Add a helper that truncates a tool output to at most 2000 characters, keeping the start and noting how many characters were cut, and use it in Runner.run. Leave a short comment on why the limit exists.",
+      "checks": [
+        {
+          "id": "comments-full-sentences",
+          "kind": "convention",
+          "rule": "Write Python comments as full sentences ending with a period.",
+          "all": [
+            {
+              "type": "file_regex",
+              "glob": "src/**/*.py",
+              "pattern": "^[ \\t]*#[ \\t]+\\S",
+              "flags": "m"
+            },
+            {
+              "type": "file_regex",
+              "glob": "src/**/*.py",
+              "pattern": "^[ \\t]*#(?![!:])(?![ \\t]*(type|noqa|pragma|pyright|mypy)\\b)[^\\n]*[^.\\s][ \\t]*$",
+              "expect": false,
+              "flags": "m"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "runconfig-model-settings",
+      "prompt": "Add an optional `model_settings` setting to RunConfig (a dict, default None) so callers can pass things like temperature along with `model`. Don't wire it into the runner yet.",
+      "checks": [
+        {
+          "id": "append-optional-field",
+          "kind": "guard",
+          "rule": "Preserve public positional parameter/dataclass field order; append optional additions.",
+          "all": [
+            {
+              "type": "file_order",
+              "glob": "src/agents/run.py",
+              "first": "tracing_disabled\\s*:",
+              "then": "model_settings\\s*:"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pr-description",
+      "prompt": "I fixed issue 123: docs/running_agents.md said max_turns defaults to 10 but it is 20, and I corrected it. Write the PR description for me to paste into GitHub.",
+      "checks": [
+        {
+          "id": "single-fenced-markdown-block",
+          "kind": "format",
+          "rule": "Supply one complete fenced `markdown` block, with an outer fence longer than any inner fence",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "^[ \\t]*(`{3,}|~{3,})[ \\t]*(markdown|md)[ \\t]*$",
+              "flags": "im"
+            }
+          ]
+        },
+        {
+          "id": "test-plan-section",
+          "kind": "format",
+          "rule": "For PR drafts, use the pull request template; include a summary, test plan, and issue number when applicable.",
+          "all": [
+            {
+              "type": "text_regex",
+              "pattern": "test plan",
+              "flags": "i"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

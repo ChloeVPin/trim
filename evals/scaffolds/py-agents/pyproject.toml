@@ -1,0 +1,8 @@
+[project]
+name = "openai-agents"
+version = "0.4.0"
+requires-python = ">=3.9"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,31 @@
+{
+  "file": "fabric-extract-wisdom",
+  "config": "opus-medium",
+  "arm": "oneline",
+  "k": 3,
+  "ts": "2026-11-27T01:23:38Z",
+  "prompt": "Audit instructions.md and propose a shorter version suited to claude-opus-5-5. Save the proposed version as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 539,
+  "original_chars": 3251,
+  "trimmed_words": 259,
+  "trimmed_chars": 1700,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.07258519999999999,
+  "usage": {
+    "input_tokens": 6,
+    "output_tokens": 2037,
+    "cache_read_input_tokens": 19146,
+    "cache_creation_input_tokens": 3499
+  },
+  "num_turns": 3,
+  "duration_ms": 21219,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Write"
+  ]
+}

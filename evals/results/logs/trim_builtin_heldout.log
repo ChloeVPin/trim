@@ -1,0 +1,16 @@
+14 trims to generate for arm 'builtin' (builtin)
+[1/14] beast-mode opus-medium builtin#1: 2657->457 words (-83%) $0.722 64s  ERROR None
+[2/14] citypaul-claude-md haiku-high builtin#1: 2933->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[3/14] citypaul-claude-md opus-medium builtin#1: 2933->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[4/14] daveshap-slide-deck haiku-high builtin#1: 200->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[5/14] daveshap-slide-deck opus-medium builtin#1: 200->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[6/14] fabric-extract-wisdom haiku-high builtin#1: 539->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[7/14] fabric-extract-wisdom opus-medium builtin#1: 539->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[8/14] karpathy-claude-md haiku-high builtin#1: 358->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[9/14] karpathy-claude-md opus-medium builtin#1: 358->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[10/14] openai-agents-agents-md haiku-high builtin#1: 2103->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[11/14] openai-agents-agents-md opus-medium builtin#1: 2103->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[12/14] superpowers-tdd haiku-high builtin#1: 1475->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[13/14] superpowers-tdd opus-medium builtin#1: 1475->0 words (--) $0.000 0s  NO OUTPUT  ERROR None
+[14/14] beast-mode haiku-high builtin#1: 2657->708 words (-73%) $0.027 77s  ERROR None
+done: $0.75, 1.3 min

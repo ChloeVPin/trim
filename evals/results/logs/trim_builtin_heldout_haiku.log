@@ -1,0 +1,9 @@
+7 trims to generate for arm 'builtin' (builtin)
+[1/7] daveshap-slide-deck haiku-high builtin#1: 200->216 words (--8%) $0.021 43s
+[2/7] fabric-extract-wisdom haiku-high builtin#1: 539->451 words (-16%) $0.026 67s
+[3/7] beast-mode haiku-high builtin#1: 2657->480 words (-82%) $0.069 139s
+[4/7] citypaul-claude-md haiku-high builtin#1: 2933->2870 words (-2%) $0.136 140s
+[5/7] karpathy-claude-md haiku-high builtin#1: 358->366 words (--2%) $0.026 75s
+[6/7] openai-agents-agents-md haiku-high builtin#1: 2103->2103 words (-0%) $0.030 70s
+[7/7] superpowers-tdd haiku-high builtin#1: 1475->1498 words (--2%) $0.066 99s
+done: $0.37, 4.0 min

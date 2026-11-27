@@ -1,0 +1,38 @@
+{
+  "file": "openai-agents-agents-md",
+  "config": "haiku-high",
+  "arm": "builtin",
+  "k": 1,
+  "ts": "2026-11-27T04:16:03Z",
+  "prompt": "/claude-api prompt-audit instructions.md -- the target model is claude-haiku-5-5. Apply your proposed edits to a copy saved as trimmed.md and leave instructions.md unchanged.",
+  "produced": true,
+  "original_modified": false,
+  "original_words": 2103,
+  "original_chars": 16627,
+  "trimmed_words": 2103,
+  "trimmed_chars": 16627,
+  "is_error": false,
+  "error": null,
+  "cost_usd": 0.03012882,
+  "usage": {
+    "input_tokens": 12,
+    "output_tokens": 17853,
+    "cache_read_input_tokens": 380472,
+    "cache_creation_input_tokens": 86982
+  },
+  "num_turns": 10,
+  "duration_ms": 70276,
+  "skill_invoked": false,
+  "read_profiles": false,
+  "tools": [
+    "Read",
+    "Glob",
+    "Read",
+    "Glob",
+    "Glob",
+    "Glob",
+    "Write",
+    "Grep",
+    "Grep"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "fabric-extract-wisdom",
+  "split": "heldout",
+  "mode": "chat",
+  "repo": "https://github.com/danielmiessler/fabric",
+  "path": "data/patterns/extract_wisdom/system.md",
+  "commit": "d3ee2c3bfbc63da0a25f4a485ad1aad0b29b88aa",
+  "license": "MIT",
+  "fetched": "2026-11-27",
+  "extraction": "whole file, unmodified",
+  "words": 539,
+  "chars": 3251,
+  "sha256": "1dfc5719961081cde886470003c544c8397f659978474121b51f4ba87cdc1a09"
+}

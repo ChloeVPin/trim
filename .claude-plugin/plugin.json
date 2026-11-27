@@ -1,0 +1,9 @@
+{
+  "name": "trim",
+  "version": "0.3.0",
+  "description": "Proposes a shorter version of instructions you have given an AI, fitted to one named model.",
+  "author": { "name": "chloevpin", "url": "https://github.com/chloevpin" },
+  "repository": "https://github.com/chloevpin/trim",
+  "license": "MIT",
+  "keywords": ["instructions", "prompts", "claude-md", "agents-md", "custom-instructions"]
+}
