@@ -1,3 +1,5 @@
+<img src="assets/trim-og.png" width="360" height="180" alt="Five instructions; the three a current model does not need are struck out, and 'Use pnpm.' and 'Never push to main.' remain." />
+
 # trim
 
 A skill that proposes a shorter version of the instructions you have given an AI, fitted to one named model. It shows what it would cut and why, what it kept and why, and changes nothing until you approve.
